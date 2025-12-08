@@ -241,8 +241,8 @@
 
         // --- HERO SECTION (Terminal Style) ---
         contentHTML += `
-          <section id="home" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh] reveal active">
-            <div class="space-y-6 order-2 lg:order-1">
+          <section id="home" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[60vh] lg:min-h-[80vh] reveal active">
+            <div class="space-y-6">
                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/20 bg-orange-500/10 text-orange-600 dark:text-orange-400 text-xs font-mono font-medium">
                  <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
@@ -279,30 +279,30 @@
                </div>
             </div>
 
-            <div class="order-1 lg:order-2 relative group perspective-1000">
+            <div class="order-1 lg:order-2 relative group perspective-1000 hidden lg:block">
                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-orange-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-               <div class="relative bg-gray-900 rounded-2xl border border-gray-800 shadow-2xl overflow-hidden transform transition-transform group-hover:rotate-1">
-                  <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-800 bg-gray-950/50">
+               <div class="relative bg-gray-900 dark:bg-gray-900 rounded-2xl border border-gray-700 shadow-2xl overflow-hidden transform transition-transform group-hover:rotate-1">
+                  <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-700 bg-gray-950">
                     <div class="w-3 h-3 rounded-full bg-red-500"></div>
                     <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                     <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <div class="ml-2 text-xs text-gray-500 font-mono">vivek@dev ~</div>
+                    <div class="ml-2 text-xs text-gray-400 font-mono">vivek@dev ~</div>
                   </div>
-                  <div class="p-6 font-mono text-sm overflow-hidden">
-                    <div class="code-line"><span class="line-num">1</span> <span class="text-purple-400">class</span> <span class="text-yellow-300">Developer</span> {</div>
-                    <div class="code-line"><span class="line-num">2</span> &nbsp;&nbsp;<span class="text-blue-400">constructor</span>() {</div>
-                    <div class="code-line"><span class="line-num">3</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span>.name = <span class="text-green-400">"${name}"</span>;</div>
-                    <div class="code-line"><span class="line-num">4</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span>.role = <span class="text-green-400">"${title}"</span>;</div>
-                    <div class="code-line"><span class="line-num">5</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span>.location = <span class="text-green-400">"${location}"</span>;</div>
-                    <div class="code-line"><span class="line-num">6</span> &nbsp;&nbsp;}</div>
-                    <div class="code-line"><span class="line-num">7</span> </div>
-                    <div class="code-line"><span class="line-num">8</span> &nbsp;&nbsp;<span class="text-blue-400">skills</span>() {</div>
-                    <div class="code-line"><span class="line-num">9</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">return</span> [</div>
-                    <div class="code-line"><span class="line-num">10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"Node.js"</span>, <span class="text-green-400">"Postgres"</span>,</div>
-                    <div class="code-line"><span class="line-num">11</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"AWS"</span>, <span class="text-green-400">"Docker"</span></div>
-                    <div class="code-line"><span class="line-num">12</span>&nbsp;&nbsp;&nbsp;&nbsp;];</div>
-                    <div class="code-line"><span class="line-num">13</span>&nbsp;&nbsp;}</div>
-                    <div class="code-line"><span class="line-num">14</span>}</div>
+                  <div class="p-6 font-mono text-sm overflow-hidden text-gray-100">
+                    <div class="code-line"><span class="line-num text-gray-500">1</span> <span class="text-purple-400">class</span> <span class="text-yellow-300">Developer</span> <span class="text-gray-300">{</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">2</span> &nbsp;&nbsp;<span class="text-blue-400">constructor</span><span class="text-gray-300">()</span> <span class="text-gray-300">{</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">3</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span><span class="text-gray-300">.</span>name <span class="text-gray-300">=</span> <span class="text-green-400">"${name}"</span><span class="text-gray-300">;</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">4</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span><span class="text-gray-300">.</span>role <span class="text-gray-300">=</span> <span class="text-green-400">"${title}"</span><span class="text-gray-300">;</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">5</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span><span class="text-gray-300">.</span>location <span class="text-gray-300">=</span> <span class="text-green-400">"${location}"</span><span class="text-gray-300">;</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">6</span> &nbsp;&nbsp;<span class="text-gray-300">}</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">7</span> </div>
+                    <div class="code-line"><span class="line-num text-gray-500">8</span> &nbsp;&nbsp;<span class="text-blue-400">skills</span><span class="text-gray-300">()</span> <span class="text-gray-300">{</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">9</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">return</span> <span class="text-gray-300">[</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"Node.js"</span><span class="text-gray-300">,</span> <span class="text-green-400">"Postgres"</span><span class="text-gray-300">,</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">11</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"AWS"</span><span class="text-gray-300">,</span> <span class="text-green-400">"Docker"</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-300">];</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">13</span>&nbsp;&nbsp;<span class="text-gray-300">}</span></div>
+                    <div class="code-line"><span class="line-num text-gray-500">14</span><span class="text-gray-300">}</span></div>
                   </div>
                </div>
             </div>
