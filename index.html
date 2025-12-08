@@ -3,999 +3,535 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vivek - Portfolio</title>
+    <title>Vivek - Backend Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C8D6RK2RMR"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-C8D6RK2RMR');
     </script>
+
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
-              "space-grotesk": ["Space Grotesk", "sans-serif"],
-            },
-            animation: {
-              "blur-in": "blurIn 0.7s ease-out forwards",
-            },
-            keyframes: {
-              blurIn: {
-                "0%": { filter: "blur(5px)", opacity: "0" },
-                "100%": { filter: "blur(0)", opacity: "1" },
-              },
+              sans: ["Space Grotesk", "sans-serif"],
+              mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
             },
             colors: {
-              white: "#fff",
-              black: "#000",
-              gray: {
-                100: "#f5f5f5",
-                200: "#e5e5e5",
-                300: "#d4d4d4",
-                400: "#a3a3a3",
-                500: "#737373",
-                600: "#525252",
-                700: "#404040",
-                800: "#262626",
-                900: "#181818",
+              background: "#09090b", // Zinc 950
+              surface: "#18181b",    // Zinc 900
+              surfaceHighlight: "#27272a", // Zinc 800
+              primary: "#3b82f6",    // Blue 500
+              accent: "#f97316",     // Orange 500
+              textMain: "#fafafa",   // Zinc 50
+              textMuted: "#a1a1aa",  // Zinc 400
+            },
+            animation: {
+              'blob': 'blob 7s infinite',
+              'fade-up': 'fadeUp 0.5s ease-out forwards',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
               },
+              fadeUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
             },
           },
         },
-        darkMode: "selector",
       };
     </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="canonical" href="" id="canonical-link" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
     <style>
-      .text-dynamic-primary {
-        color: var(--primary-color);
+      /* Base Styles */
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+        background-color: #fafafa;
+        color: #18181b;
+        transition: background-color 0.3s, color 0.3s;
       }
       
-      /* Modern CSS Enhancements */
-      :root {
-        --primary: #1d2b50;
-        --accent: #fb4a28;
-        --glow-color: rgba(29, 43, 80, 0.15);
+      .dark body {
+        background-color: #09090b;
+        color: #fafafa;
+      }
+
+      /* Noise Texture */
+      .bg-noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        opacity: 0.05;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      /* Scroll Animation Utilities */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
       }
       
-      /* Smooth scrollbar */
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Custom Scrollbar */
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
       }
-      
       ::-webkit-scrollbar-track {
         background: transparent;
       }
-      
       ::-webkit-scrollbar-thumb {
-        background: var(--primary);
+        background: #a1a1aa;
         border-radius: 10px;
       }
-      
-      /* Glassmorphism effect */
-      .glass {
+      ::-webkit-scrollbar-thumb:hover {
+        background: #71717a;
+      }
+
+      /* Utility Classes */
+      .glass-panel {
         background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(0, 0, 0, 0.08);
       }
       
-      .dark .glass {
-        background: rgba(24, 24, 27, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+      .dark .glass-panel {
+        background: rgba(24, 24, 27, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* Gradient Text */
+      .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(to right, #3b82f6, #8b5cf6, #f97316);
       }
       
-      /* Accent text */
-      .gradient-text {
-        color: var(--accent);
-      }
-      
-      /* Card hover effects */
+      /* Card Hover Glow */
       .card-hover {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      
-      .card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
-      }
-      
-      .dark .card-hover:hover {
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-      }
-      
-      /* Accent border */
-      .accent-border {
-        position: relative;
-      }
-      
-      .accent-border::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        padding: 2px;
-        background: var(--accent);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-      }
-      
-      /* Profile image glow */
-      .profile-glow {
-        box-shadow: 0 0 40px var(--glow-color);
-        transition: box-shadow 0.3s ease;
-      }
-      
-      .profile-glow:hover {
-        box-shadow: 0 0 60px var(--glow-color), 0 0 80px var(--glow-color);
-      }
-      
-      /* Floating animation */
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-      }
-      
-      .float-animation {
-        animation: float 3s ease-in-out infinite;
-      }
-      
-      /* Stagger animation for children */
-      .stagger-children > * {
-        opacity: 0;
-        animation: fadeInUp 0.6s ease forwards;
-      }
-      
-      .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-      .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-      .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-      .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-      .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
-      .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
-      
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      /* Skill tag hover */
-      .skill-tag {
-        transition: all 0.2s ease;
-        cursor: default;
-      }
-      
-      .skill-tag:hover {
-        transform: scale(1.05);
-        background: var(--primary);
-        color: white;
-        border-color: var(--primary);
-      }
-      
-      /* Button shine effect */
-      .btn-shine {
-        position: relative;
-        overflow: hidden;
-      }
-      
-      .btn-shine::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(
-          to right,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.3) 50%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        transform: rotate(45deg) translateX(-100%);
-        transition: transform 0.6s;
-      }
-      
-      .btn-shine:hover::after {
-        transform: rotate(45deg) translateX(100%);
-      }
-      
-      /* Section divider with accent */
-      .section-divider {
-        position: relative;
-      }
-      
-      .section-divider::before {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 60px;
-        height: 3px;
-        background: var(--accent);
-        border-radius: 2px;
-      }
-      
-      /* Responsive typography */
-      @media (max-width: 640px) {
-        h1 { font-size: 1.75rem !important; }
-        h2 { font-size: 1.25rem !important; }
-        h3 { font-size: 1rem !important; }
-      }
-      
-      /* Project card styling */
-      .project-card {
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 16px;
-        padding: 1.5rem;
-        border: 1px solid rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
       }
-      
-      .dark .project-card {
-        background: rgba(39, 39, 42, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      
-      .project-card:hover {
-        background: rgba(255, 255, 255, 0.9);
+      .card-hover:hover {
         transform: translateY(-4px);
-        box-shadow: 0 20px 40px -15px rgba(29, 43, 80, 0.15);
-        border-color: rgba(29, 43, 80, 0.1);
+        box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
       }
-      
-      .dark .project-card:hover {
-        background: rgba(39, 39, 42, 0.9);
-        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
-        border-color: rgba(251, 74, 40, 0.2);
+
+      /* Terminal Code Styling */
+      .code-line {
+        font-family: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace;
+        display: flex;
+        gap: 12px;
       }
-      
-      /* Timeline for experience */
-      .timeline-item {
-        position: relative;
-        padding-left: 2rem;
-        border-left: 2px solid var(--primary);
-      }
-      
-      .timeline-item::before {
-        content: '';
-        position: absolute;
-        left: -6px;
-        top: 0;
-        width: 10px;
-        height: 10px;
-        background: var(--accent);
-        border-radius: 50%;
-      }
-      
-      /* Link underline animation */
-      .link-underline {
-        position: relative;
-        text-decoration: none;
-      }
-      
-      .link-underline::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--accent);
-        transition: width 0.3s ease;
-      }
-      
-      .link-underline:hover::after {
-        width: 100%;
-      }
-      
-      /* Background decoration */
-      .bg-decoration {
-        position: fixed;
-        width: 600px;
-        height: 600px;
-        border-radius: 50%;
-        filter: blur(120px);
-        opacity: 0.08;
-        pointer-events: none;
-        z-index: -1;
-      }
-      
-      .bg-decoration-1 {
-        top: -300px;
-        right: -300px;
-        background: var(--primary);
-      }
-      
-      .bg-decoration-2 {
-        bottom: -300px;
-        left: -300px;
-        background: var(--accent);
-        opacity: 0.05;
-      }
-      
-      /* Container queries for better responsiveness */
-      @container (max-width: 400px) {
-        .responsive-text {
-          font-size: 0.875rem;
-        }
-      }
-      
-      /* Focus styles for accessibility */
-      a:focus-visible,
-      button:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 4px;
-      }
-      
-      /* Reduced motion support */
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
+      .line-num {
+        color: #52525b;
+        user-select: none;
       }
     </style>
   </head>
-  <body
-    class="bg-white text-gray-800 dark:bg-[#18181b] dark:text-gray-300 font-space-grotesk antialiased transition-colors duration-300"
-  >
-    <div id="app"></div>
-    <script>
-      let portfolioData = null;
-
-      // Load portfolio data from JSON file
-      async function loadPortfolioData() {
-        try {
-          const response = await fetch('./portfolio-data.json');
-          if (!response.ok) {
-            throw new Error('HTTP error! status: ' + response.status);
-          }
-          portfolioData = await response.json();
-          return portfolioData;
-        } catch (error) {
-          console.error('Error loading portfolio data:', error);
-          document.getElementById("app").innerHTML = '<div class="text-red-500 p-8">Error loading portfolio data. Please make sure portfolio-data.json exists.</div>';
-          throw error;
-        }
-      }
-
-      // getIconSVG: Inline SVGs for all icons used in the portfolio
-      function getIconSVG(name) {
-        const icons = {
-          linkedin:
-            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>',
-          github:
-            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>',
-          twitter:
-            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg>',
-          "arrow-up-right":
-            '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/></svg>',
-          repo: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>',
-          sun: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>',
-          moon: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>',
-        };
-        return icons[name] || "";
-      }
-
-      // Helper function to create section dividers
-      function createSectionDivider(title) {
-        return `
-    <div class="section-divider mb-10">
-      <h2 class="font-bold text-2xl md:text-3xl text-gray-900 dark:text-white">${title}</h2>
-    </div>
-  `;
-      }
-
-      // Helper function to generate initials from name
-      function generateInitials(name) {
-        const words = name.trim().split(" ");
-        if (words.length === 1) {
-          // If only one word, return first letter
-          return words[0].charAt(0).toUpperCase();
-        } else {
-          // If 2 or more words, return first letter of first two words
-          return words
-            .slice(0, 2)
-            .map((word) => word.charAt(0).toUpperCase())
-            .join("");
-        }
-      }
-
-      // Helper function to ensure URLs have proper protocol
-      function ensureUrl(url) {
-        if (!url) return url;
-        // If URL doesn't start with http:// or https://, prepend https://
-        if (!url.match(/^https?:\/\//)) {
-          return `https://${url}`;
-        }
-        return url;
-      }
-
-      // Theme functions
-      function setTheme(theme) {
-        localStorage.setItem("theme", theme);
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-        const toggle = document.getElementById("theme-toggle");
-        if (toggle) {
-          toggle.innerHTML = getIconSVG(theme === "dark" ? "sun" : "moon");
-        }
-      }
-
-      function setupTheme() {
-        const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-        const defaultTheme = savedTheme || (prefersDark ? "dark" : "light");
-        setTheme(defaultTheme);
-
-        const toggle = document.getElementById("theme-toggle");
-        if (toggle) {
-          toggle.addEventListener("click", () => {
-            const currentTheme = localStorage.getItem("theme") || "light";
-            setTheme(currentTheme === "dark" ? "light" : "dark");
-          });
-        }
-      }
-
-      function setMetaTags(data) {
-        const pageTitle = `${data.settings.name} - ${data.settings.title}`;
-        const pageDescription = data.settings.summary;
-        const pageImage = data.settings.profileImage;
-        const pageUrl = window.location.href;
-
-        // document title
-        document.title = pageTitle;
-
-        // Helper to create/update meta tags
-        const createOrUpdateMeta = (
-          property,
-          content,
-          isNameAttribute = false
-        ) => {
-          const attribute = isNameAttribute ? "name" : "property";
-          let element = document.querySelector(
-            `meta[${attribute}="${property}"]`
-          );
-          if (!element) {
-            element = document.createElement("meta");
-            element.setAttribute(attribute, property);
-            document.head.appendChild(element);
-          }
-          element.setAttribute("content", content);
-        };
-
-        // Standard meta tags
-        createOrUpdateMeta("description", pageDescription, true);
-
-        // Open Graph (for Facebook, LinkedIn, etc.)
-        createOrUpdateMeta("og:title", pageTitle);
-        createOrUpdateMeta("og:description", pageDescription);
-        createOrUpdateMeta("og:image", pageImage);
-        createOrUpdateMeta("og:url", pageUrl);
-        createOrUpdateMeta("og:type", "website");
-
-        // Twitter Card
-        createOrUpdateMeta("twitter:card", "summary_large_image", true);
-        createOrUpdateMeta("twitter:title", pageTitle, true);
-        createOrUpdateMeta("twitter:description", pageDescription, true);
-        createOrUpdateMeta("twitter:image", pageImage, true);
-
-        // Canonical link
-        const canonical = document.getElementById("canonical-link");
-        if (canonical) {
-          canonical.setAttribute("href", pageUrl.split("#")[0]);
-        }
-      }
-
-      // Main rendering function
-      async function renderPortfolio() {
-        try {
-          // Load portfolio data from JSON file
-          const data = await loadPortfolioData();
-
-          // Meta tags immediately for better SEO
-          setMetaTags(data);
-
-          // --- Social Links ---
-          let socialLinksHTML = "";
-          if (data.sections.social && data.sections.social.enabled) {
-            socialLinksHTML = data.sections.social.items
-              .map(
-                (item) => `
-        <a href="${ensureUrl(
-          item.url
-        )}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-[#1d2b50] dark:hover:text-[#fb4a28] hover:border-[#1d2b50] dark:hover:border-[#fb4a28] hover:-translate-y-1 transition-all duration-300">
-          ${getIconSVG(item.platform)}
-          <span class="font-medium">${
-            item.platform.charAt(0).toUpperCase() + item.platform.slice(1)
-          }</span>
-        </a>`
-              )
-              .join('');
-          }
-
-          // --- Header ---
-          let headerHTML = "";
-          if (data.navigation && data.navigation.enabled) {
-            const navLinks = data.navigation.items
-              .map(
-                (item) => `
-        <a href="${item.url}" class="link-underline px-4 py-2 text-sm font-medium rounded-full hover:bg-white/50 dark:hover:bg-gray-700/50 transition-all duration-300">${item.name}</a>
-      `
-              )
-              .join("");
-
-            headerHTML = `
-        <header class="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50">
-          <nav class="glass flex items-center gap-2 shadow-xl rounded-full px-6 py-3">
-            <div class="flex items-center justify-center w-9 h-9 bg-[#1d2b50] text-white rounded-full font-bold text-sm tracking-wider shadow-lg">
-              ${generateInitials(data.settings.name)}
-            </div>
-            ${navLinks}
-          </nav>
-        </header>
-
-        <!-- Mobile Sidebar -->
-        <div id="mobile-sidebar" class="fixed top-0 left-0 h-full w-72 glass shadow-2xl transform -translate-x-full transition-transform duration-300 ease-out z-50" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
-          <div class="p-8 pt-24">
-            <div class="flex items-center gap-3 mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
-              <div class="flex items-center justify-center w-12 h-12 bg-[#1d2b50] text-white rounded-full font-bold text-lg shadow-lg">
-                ${generateInitials(data.settings.name)}
-              </div>
-              <div>
-                <p class="font-semibold text-gray-900 dark:text-white">${data.settings.name}</p>
-                <p class="text-sm text-gray-500">${data.settings.title}</p>
-              </div>
-            </div>
-            <nav class="flex flex-col gap-2 stagger-children">
-              ${data.navigation.items
-                .map(
-                  (item) => `
-                <a href="${item.url}" class="px-4 py-3 text-lg font-medium rounded-xl hover:bg-[#1d2b50]/5 hover:text-[#1d2b50] dark:hover:bg-[#fb4a28]/10 dark:hover:text-[#fb4a28] transition-all duration-300">${item.name}</a>
-              `
-                )
-                .join("")}
-            </nav>
-          </div>
-        </div>
-
-        <!-- Hamburger Menu -->
-        <button id="hamburger-menu" class="md:hidden fixed top-4 left-4 z-[60] p-3 rounded-xl glass shadow-lg hover:scale-105 transition-transform duration-300" aria-label="Open menu" aria-controls="mobile-sidebar" aria-expanded="false">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-gray-700 dark:text-gray-300">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      `;
-          }
-
-          // --- CTA Buttons ---
-          let ctaButtonsHTML = "";
-          if (data.sections.hero && data.sections.hero.enabled) {
-            ctaButtonsHTML = data.sections.hero.ctaButtons
-              .map(
-                (btn, index) => `
-        <a href="${btn.url}" target="_blank" rel="noopener noreferrer" class="btn-shine inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-xl ${index === 0 ? 'bg-[#1d2b50] text-white shadow-lg shadow-[#1d2b50]/20 hover:bg-[#2a3d6b] hover:shadow-xl' : 'glass border border-gray-200 dark:border-gray-700 hover:border-[#1d2b50] dark:hover:border-[#fb4a28] hover:text-[#1d2b50] dark:hover:text-[#fb4a28]'} transition-all duration-300 hover:-translate-y-0.5">
-          ${btn.text}
-        </a>`
-              )
-              .join("");
-          }
-
-          // --- Skills ---
-          let skillsHTML = "";
-          if (data.sections.about && data.sections.about.enabled) {
-            if (
-              data.sections.about.skills &&
-              data.sections.about.skills.enabled
-            ) {
-              skillsHTML = `
-          <div class="mt-20" id="skills">
-              <h2 class="font-bold text-2xl md:text-3xl gradient-text mb-8">${
-                data.sections.about.skills.title
-              }</h2>
-              <div class="flex flex-wrap gap-3 stagger-children">
-                  ${data.sections.about.skills.items
-                    .map(
-                      (skill) =>
-                        `<span class="skill-tag text-sm px-4 py-2 rounded-xl glass border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium">${skill}</span>`
-                    )
-                    .join("")}
-              </div>
-          </div>
-        `;
-            }
-          }
-
-          // --- Projects ---
-          let projectsHTML = "";
-          if (data.sections.projects && data.sections.projects.enabled) {
-            projectsHTML = `
-        <div class="mt-20" id="projects">
-          ${createSectionDivider(data.sections.projects.title)}
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            ${data.sections.projects.items
-              .map(
-                (project) => `
-            <div class="project-card">
-              <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-2">${
-                project.title
-              }</h3>
-              <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">${
-                project.description
-              }</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                ${project.tags
-                  .map(
-                    (tag) =>
-                      `<span class="text-xs px-3 py-1 rounded-full bg-[#1d2b50]/10 text-[#1d2b50] dark:bg-[#fb4a28]/10 dark:text-[#fb4a28] font-medium">${tag}</span>`
-                  )
-                  .join("")}
-              </div>
-              <div class="flex items-center gap-4 text-sm pt-2 border-t border-gray-100 dark:border-gray-700">
-                ${
-                  project.previewUrl
-                    ? `<a href="${ensureUrl(
-                        project.previewUrl
-                      )}" target="_blank" rel="noopener noreferrer" class="link-underline inline-flex items-center gap-1.5 text-[#1d2b50] dark:text-[#fb4a28] hover:text-[#fb4a28] dark:hover:text-[#fb4a28]/80 font-medium transition-colors">
-                       <span>Live Preview</span>
-                       ${getIconSVG("arrow-up-right")}
-                     </a>`
-                    : ""
-                }
-                ${
-                  project.repoUrl
-                    ? `<a href="${ensureUrl(
-                        project.repoUrl
-                      )}" target="_blank" rel="noopener noreferrer" class="link-underline inline-flex items-center gap-1.5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium transition-colors">
-                       ${getIconSVG("repo")}
-                       <span>Source Code</span>
-                     </a>`
-                    : ""
-                }
-              </div>
-            </div>
-          `
-              )
-              .join("")}
-          </div>
-        </div>
-      `;
-          }
-
-          // --- Experience ---
-          let experienceHTML = "";
-          if (data.sections.experience && data.sections.experience.enabled) {
-            const experienceItemsHTML = data.sections.experience.items
-              .map(
-                (item) => `
-        <div class="timeline-item mb-10 pb-6">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-            <h3 class="font-semibold text-lg text-gray-900 dark:text-white">${item.position}</h3>
-            <span class="text-sm px-3 py-1 rounded-full bg-gradient-to-r from-[#1d2b50]/10 to-[#fb4a28]/10 text-[#1d2b50] dark:text-[#fb4a28] font-medium whitespace-nowrap">${item.period}</span>
-          </div>
-          <p class="text-[#1d2b50] dark:text-[#fb4a28] font-medium mb-3">${item.company}</p>
-          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">${item.description}</p>
-        </div>
-      `
-              )
-              .join("");
-
-            experienceHTML = `
-        <div class="mt-20" id="experience">
-            ${createSectionDivider(data.sections.experience.title)}
-            <div class="ml-2">
-              ${experienceItemsHTML}
-            </div>
-        </div>
-      `;
-          }
-
-          // --- Education ---
-          let educationHTML = "";
-          if (data.sections.education && data.sections.education.enabled) {
-            const educationItemsHTML = data.sections.education.items
-              .map(
-                (item) => `
-        <div class="project-card mb-4">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                <h3 class="font-semibold text-lg text-gray-900 dark:text-white">${item.degree}</h3>
-                <span class="text-sm px-3 py-1 rounded-full bg-[#1d2b50]/10 text-[#1d2b50] dark:bg-[#fb4a28]/10 dark:text-[#fb4a28] font-medium whitespace-nowrap">${item.period}</span>
-            </div>
-            <p class="text-[#1d2b50] dark:text-[#fb4a28] font-medium">${item.institution}</p>
-        </div>
-      `
-              )
-              .join("");
-
-            educationHTML = `
-        <div class="mt-20" id="education">
-            ${createSectionDivider(data.sections.education.title)}
-            ${educationItemsHTML}
-        </div>
-      `;
-          }
-
-          // --- Achievements ---
-          let achievementsHTML = "";
-          if (
-            data.sections.achievements &&
-            data.sections.achievements.enabled
-          ) {
-            const achievementItemsHTML = data.sections.achievements.items
-              .map(
-                (item) => `
-        <div class="project-card mb-4 flex items-start gap-4">
-          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-[#1d2b50] dark:bg-[#fb4a28] flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
-              <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5z"/>
-            </svg>
-          </div>
-          <div>
-            <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-1">${item.title}</h3>
-            <p class="text-gray-600 dark:text-gray-400">${item.description}</p>
-          </div>
-        </div>
-      `
-              )
-              .join("");
-
-            achievementsHTML = `
-        <div class="mt-20" id="achievements">
-          ${createSectionDivider(data.sections.achievements.title)}
-          ${achievementItemsHTML}
-        </div>
-      `;
-          }
-
-          // --- Contact ---
-          let contactHTML = "";
-          if (data.sections.contact && data.sections.contact.enabled) {
-            const contactItems = [
-              {
-                value: data.sections.contact.email,
-                link: `mailto:${data.sections.contact.email}`,
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>'
-              },
-              {
-                value: data.sections.contact.phone,
-                link: `tel:${data.sections.contact.phone}`,
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>'
-              },
-              {
-                value: data.sections.contact.location,
-                link: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                  data.sections.contact.location
-                )}`,
-                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>'
-              },
-            ]
-              .filter((item) => item.value)
-              .map(
-                (item) =>
-                  `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="link-underline inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-[#1d2b50] dark:hover:text-[#fb4a28] transition-all duration-300">${item.icon}<span>${item.value}</span></a>`
-              )
-              .join("");
-
-            contactHTML = `
-        <div class="mt-20" id="contact">
-           ${createSectionDivider(data.sections.contact.title)}
-           <div class="project-card text-center">
-            <div class="flex flex-col items-center gap-6">
-                <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-6">
-                  ${contactItems}
-                </div>
-                <div class="flex items-center gap-6 pt-6 border-t border-gray-200 dark:border-gray-700 w-full justify-center">
-                  ${socialLinksHTML}
-                </div>
-            </div>
-           </div>
-        </div>
-      `;
-          }
-
-          // --- Footer ---
-          let footerHTML = "";
-          if (data.footer && data.footer.enabled) {
-            footerHTML = `
-        <footer class="py-12 mt-20 border-t border-gray-200 dark:border-gray-800">
-          <div class="max-w-4xl mx-auto px-6 text-center">
-            <p class="text-gray-500 dark:text-gray-500 mb-4">${data.footer.copyright}</p>
-            <a href="https://framecv.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass text-gray-500 hover:text-[#1d2b50] dark:hover:text-[#fb4a28] transition-all duration-300 hover:-translate-y-0.5">
-              <span>🚀</span>
-              <span class="font-medium">Built with Framecv.com</span>
-            </a>
-          </div>
-        </footer>
-      `;
-          }
-
-          const content = `
-    <!-- Background Decorations -->
-    <div class="bg-decoration bg-decoration-1"></div>
-    <div class="bg-decoration bg-decoration-2"></div>
+  <body class="antialiased selection:bg-orange-500 selection:text-white">
     
-    ${headerHTML}
-    <div class="flex flex-col min-h-screen">
-      <div class="fixed top-4 right-4 z-50">
-          <button id="theme-toggle" class="p-3 rounded-xl glass shadow-lg hover:scale-110 transition-all duration-300 text-gray-700 dark:text-gray-300"></button>
-      </div>
-      <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-40 pb-8 animate-blur-in">
-        <header class="grid md:grid-cols-3 gap-8 md:gap-12 items-center mb-16">
-            <div class="md:col-span-1 flex justify-center">
-              <div class="relative">
-                <div class="absolute inset-0 bg-[#1d2b50] rounded-full blur-2xl opacity-20"></div>
-                <img src="${data.settings.profileImage}" alt="Profile" class="profile-glow relative rounded-full w-36 h-36 sm:w-44 sm:h-44 object-cover border-4 border-white dark:border-gray-800 shadow-2xl" loading="lazy">
-              </div>
-            </div>
-            <div class="md:col-span-2 text-center md:text-left">
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-                  Hey, I'm <span class="text-[#fb4a28]"> ${data.settings.name}</span>
-                </h1>
-                <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mt-3 font-medium">${data.settings.title}</p>
-                <p class="text-base text-gray-500 dark:text-gray-500 mt-1 flex items-center justify-center md:justify-start gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  ${data.settings.location}
-                </p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
-                  ${ctaButtonsHTML}
-                </div>
-            </div>
-        </header>
-
-        <div class="project-card my-16">
-          <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">${data.settings.summary}</p>
-        </div>
-        
-        ${skillsHTML}
-        ${experienceHTML}
-        ${projectsHTML}
-        ${educationHTML}
-        ${achievementsHTML}
-        ${contactHTML}
-
-      </main>
-      ${footerHTML}
+    <div class="bg-noise"></div>
+    
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-20 pointer-events-none">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px] animate-blob"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
     </div>
-    `;
 
-          document.getElementById("app").innerHTML = content;
-          setupTheme();
+    <button id="theme-toggle" class="fixed top-6 right-6 z-50 p-3 rounded-full glass-panel shadow-lg hover:scale-110 transition-transform text-gray-800 dark:text-gray-200">
+      <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg id="moon-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
 
-          // JSON-LD Person schema
-          try {
-            const personSchema = {
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: data.settings.name,
-              jobTitle: data.settings.title,
-              description: data.settings.summary,
-              image: data.settings.profileImage,
-              url: window.location.href,
-              sameAs: (data.sections.social?.items || []).map((s) =>
-                ensureUrl(s.url)
-              ),
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: data.settings.location,
-              },
-            };
-            const ld = document.createElement("script");
-            ld.type = "application/ld+json";
-            ld.textContent = JSON.stringify(personSchema);
-            document.head.appendChild(ld);
-          } catch (e) {
-            console.warn("JSON-LD injection failed", e);
-          }
-          document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener("click", function (e) {
-              e.preventDefault();
-              const targetId = this.getAttribute("href");
-              if (targetId === "#") return;
-              const targetElement = document.querySelector(targetId);
-              if (targetElement) {
-                targetElement.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }
-            });
-          });
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-40 hidden md:block">
+      <div id="nav-container" class="glass-panel rounded-full px-6 py-3 flex gap-8 text-sm font-medium text-gray-600 dark:text-gray-300 shadow-xl shadow-black/5">
+        </div>
+    </nav>
 
-          const hamburgerMenu = document.getElementById("hamburger-menu");
-          const sidebar = document.getElementById("mobile-sidebar");
-          const mainContent = document.querySelector("main");
+    <button id="mobile-menu-btn" class="md:hidden fixed top-6 left-6 z-50 p-3 rounded-full glass-panel text-gray-800 dark:text-gray-200">
+       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+    <div id="mobile-menu" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 transform -translate-x-full transition-transform duration-300 flex items-center justify-center">
+        <div id="mobile-nav-links" class="flex flex-col gap-6 text-2xl font-bold text-center"></div>
+    </div>
 
-          // Guard against missing elements when navigation is disabled
-          if (hamburgerMenu && sidebar) {
-            function openSidebar() {
-              sidebar.classList.remove("-translate-x-full");
-              hamburgerMenu.setAttribute("aria-expanded", "true");
-              sidebar.setAttribute("aria-hidden", "false");
-              sidebar.focus();
-            }
+    <main id="app" class="max-w-5xl mx-auto px-6 py-24 md:py-32 flex flex-col gap-32">
+       <div class="flex items-center justify-center h-[50vh]">
+         <div class="animate-pulse text-xl text-gray-400 font-mono">Loading System...</div>
+       </div>
+    </main>
 
-            function closeSidebar() {
-              sidebar.classList.add("-translate-x-full");
-              hamburgerMenu.setAttribute("aria-expanded", "false");
-              sidebar.setAttribute("aria-hidden", "true");
-            }
+    <footer class="border-t border-gray-200 dark:border-gray-800 py-12 mt-12 bg-white/50 dark:bg-black/20 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <p id="footer-text" class="text-gray-500 text-sm"></p>
+        </div>
+    </footer>
 
-            hamburgerMenu.addEventListener("click", () => {
-              const isOpen = !sidebar.classList.contains("-translate-x-full");
-              if (isOpen) {
-                closeSidebar();
-              } else {
-                openSidebar();
-              }
-            });
+    <script>
+      // --- Helper Functions ---
+      
+      const getIcon = (name) => {
+        const icons = {
+           linkedin: '<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>',
+           github: '<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>',
+           leetcode: '<svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>',
+           link: '<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>'
+        };
+        return icons[name] || icons.link;
+      };
 
-            sidebar.querySelectorAll("a").forEach((link) => {
-              link.addEventListener("click", () => {
-                sidebar.classList.add("-translate-x-full");
-              });
-            });
+      // --- Main Logic ---
 
-            document.addEventListener("click", (event) => {
-              if (
-                !sidebar.contains(event.target) &&
-                !hamburgerMenu.contains(event.target)
-              ) {
-                closeSidebar();
-              }
-            });
-
-            document.addEventListener("keydown", (event) => {
-              if (event.key === "Escape") {
-                closeSidebar();
-                hamburgerMenu.focus();
-              }
-            });
-          }
-        } catch (err) {
-          document.getElementById(
-            "app"
-          ).innerHTML = `<div class="text-red-500 p-8">${err}</div>`;
-          console.error(err);
+      async function loadPortfolio() {
+        try {
+          const res = await fetch('./portfolio-data.json');
+          if (!res.ok) throw new Error("Could not load data");
+          const data = await res.json();
+          renderApp(data);
+          setupScrollObserver();
+        } catch (error) {
+          console.error(error);
+          document.getElementById('app').innerHTML = `<div class="text-red-500 text-center">Error loading portfolio data. Please ensure portfolio-data.json is present.</div>`;
         }
       }
 
-      document.addEventListener("DOMContentLoaded", renderPortfolio);
+      function renderApp(data) {
+        // 1. Navigation
+        const navItems = data.sections.navigation.items.map(item => 
+          `<a href="${item.url}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">${item.name}</a>`
+        ).join('');
+        
+        document.getElementById('nav-container').innerHTML = navItems;
+        
+        const mobileNavItems = data.sections.navigation.items.map(item => 
+          `<a href="${item.url}" class="mobile-link hover:text-orange-500 transition-colors" onclick="toggleMobileMenu()">${item.name}</a>`
+        ).join('');
+        document.getElementById('mobile-nav-links').innerHTML = mobileNavItems;
 
-      const style = document.createElement("style");
-      style.textContent = `
-  .text-dynamic-primary {
-      color: var(--primary-color);
-  }
-`;
-      document.head.append(style);
+        // 2. Main Sections Construction
+        const { hero, about, experience, projects, education, achievements, contact, social } = data.sections;
+        const { name, title, summary, profileImage, location } = data.settings;
+
+        let contentHTML = '';
+
+        // --- HERO SECTION (Terminal Style) ---
+        contentHTML += `
+          <section id="home" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh] reveal active">
+            <div class="space-y-6 order-2 lg:order-1">
+               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/20 bg-orange-500/10 text-orange-600 dark:text-orange-400 text-xs font-mono font-medium">
+                 <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                  </span>
+                 Available for work
+               </div>
+               <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 dark:text-white">
+                 Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500">${name}</span>
+               </h1>
+               <h2 class="text-2xl text-gray-500 dark:text-gray-400 font-medium">${title}</h2>
+               <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl">
+                 ${summary}
+               </p>
+               
+               <div class="flex flex-wrap gap-4 pt-4">
+                 ${hero.ctaButtons.map((btn, idx) => `
+                   <a href="${btn.url}" target="_blank" class="${idx === 0 ? 
+                     'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200' : 
+                     'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400'} 
+                     px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2">
+                     ${btn.text}
+                     ${idx === 0 ? '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>' : ''}
+                   </a>
+                 `).join('')}
+               </div>
+               
+               <div class="flex gap-4 pt-4">
+                 ${social.items.map(s => `
+                   <a href="${s.url}" target="_blank" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+                     ${getIcon(s.platform)}
+                   </a>
+                 `).join('')}
+               </div>
+            </div>
+
+            <div class="order-1 lg:order-2 relative group perspective-1000">
+               <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-orange-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+               <div class="relative bg-gray-900 rounded-2xl border border-gray-800 shadow-2xl overflow-hidden transform transition-transform group-hover:rotate-1">
+                  <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-800 bg-gray-950/50">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <div class="ml-2 text-xs text-gray-500 font-mono">vivek@dev ~</div>
+                  </div>
+                  <div class="p-6 font-mono text-sm overflow-hidden">
+                    <div class="code-line"><span class="line-num">1</span> <span class="text-purple-400">class</span> <span class="text-yellow-300">Developer</span> {</div>
+                    <div class="code-line"><span class="line-num">2</span> &nbsp;&nbsp;<span class="text-blue-400">constructor</span>() {</div>
+                    <div class="code-line"><span class="line-num">3</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span>.name = <span class="text-green-400">"${name}"</span>;</div>
+                    <div class="code-line"><span class="line-num">4</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span>.role = <span class="text-green-400">"${title}"</span>;</div>
+                    <div class="code-line"><span class="line-num">5</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span>.location = <span class="text-green-400">"${location}"</span>;</div>
+                    <div class="code-line"><span class="line-num">6</span> &nbsp;&nbsp;}</div>
+                    <div class="code-line"><span class="line-num">7</span> </div>
+                    <div class="code-line"><span class="line-num">8</span> &nbsp;&nbsp;<span class="text-blue-400">skills</span>() {</div>
+                    <div class="code-line"><span class="line-num">9</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">return</span> [</div>
+                    <div class="code-line"><span class="line-num">10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"Node.js"</span>, <span class="text-green-400">"Postgres"</span>,</div>
+                    <div class="code-line"><span class="line-num">11</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"AWS"</span>, <span class="text-green-400">"Docker"</span></div>
+                    <div class="code-line"><span class="line-num">12</span>&nbsp;&nbsp;&nbsp;&nbsp;];</div>
+                    <div class="code-line"><span class="line-num">13</span>&nbsp;&nbsp;}</div>
+                    <div class="code-line"><span class="line-num">14</span>}</div>
+                  </div>
+               </div>
+            </div>
+          </section>
+        `;
+
+        // --- SKILLS & ABOUT (Bento Grid) ---
+        if (about.enabled) {
+          contentHTML += `
+            <section id="about" class="reveal">
+              <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-orange-500"></span>
+                Tech Stack
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-blue-500">
+                   <h4 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Technologies</h4>
+                   <div class="flex flex-wrap gap-2">
+                     ${about.skills.items.map(skill => `
+                       <span class="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:text-blue-500 transition-colors cursor-default">
+                         ${skill}
+                       </span>
+                     `).join('')}
+                   </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                   <div class="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+                      <span class="text-4xl font-bold text-blue-500 mb-1">1.5+</span>
+                      <span class="text-xs text-gray-500 uppercase tracking-wider">Years Exp</span>
+                   </div>
+                   <div class="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+                      <span class="text-4xl font-bold text-orange-500 mb-1">900+</span>
+                      <span class="text-xs text-gray-500 uppercase tracking-wider">LeetCode</span>
+                   </div>
+                   <div class="col-span-2 glass-panel p-6 rounded-2xl flex items-center justify-between">
+                      <div>
+                        <div class="text-sm text-gray-500">Current Location</div>
+                        <div class="font-semibold text-lg dark:text-white">${location}</div>
+                      </div>
+                      <div class="text-right">
+                         <div class="text-sm text-gray-500">Focus</div>
+                         <div class="font-semibold text-lg text-blue-500">Backend Systems</div>
+                      </div>
+                   </div>
+                </div>
+              </div>
+            </section>
+          `;
+        }
+
+        // --- EXPERIENCE (Vertical Timeline) ---
+        if (experience.enabled) {
+          contentHTML += `
+            <section id="experience" class="reveal">
+              <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-orange-500"></span>
+                Experience
+              </h3>
+              <div class="space-y-8 relative border-l-2 border-gray-200 dark:border-gray-800 ml-3 md:ml-6">
+                 ${experience.items.map(job => `
+                   <div class="relative pl-8 md:pl-12 group">
+                     <span class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-white dark:bg-gray-900 border-2 border-blue-500 group-hover:scale-125 transition-transform"></span>
+                     
+                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                       <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">${job.position}</h4>
+                       <span class="text-sm font-mono text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">${job.period}</span>
+                     </div>
+                     <div class="text-lg text-gray-700 dark:text-gray-300 font-medium mb-3">${job.company}</div>
+                     <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm whitespace-pre-line border-l-2 border-transparent hover:border-gray-300 dark:hover:border-gray-700 pl-4 transition-colors">
+                       ${job.description}
+                     </p>
+                   </div>
+                 `).join('')}
+              </div>
+            </section>
+          `;
+        }
+
+        // --- PROJECTS (Grid Cards) ---
+        if (projects.enabled) {
+          contentHTML += `
+            <section id="projects" class="reveal">
+              <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-orange-500"></span>
+                Featured Projects
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                ${projects.items.map(proj => `
+                  <div class="glass-panel p-6 rounded-2xl card-hover flex flex-col h-full">
+                    <div class="flex justify-between items-start mb-4">
+                      <div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                      </div>
+                      <div class="flex gap-3">
+                        ${proj.repoUrl ? `<a href="${proj.repoUrl}" target="_blank" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">${getIcon('github')}</a>` : ''}
+                        ${proj.previewUrl ? `<a href="${proj.previewUrl}" target="_blank" class="text-gray-400 hover:text-blue-500">${getIcon('link')}</a>` : ''}
+                      </div>
+                    </div>
+                    
+                    <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">${proj.title}</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+                      ${proj.description}
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
+                      ${proj.tags.map(tag => `
+                        <span class="text-xs font-mono text-gray-500">#${tag}</span>
+                      `).join('')}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </section>
+          `;
+        }
+
+        // --- ACHIEVEMENTS ---
+        if (achievements.enabled) {
+          contentHTML += `
+            <section id="achievements" class="reveal">
+              <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-orange-500"></span>
+                Achievements
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                 ${achievements.items.map(item => `
+                   <div class="flex items-start gap-4 p-4 rounded-xl border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                      <div class="text-yellow-500 mt-1">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-gray-900 dark:text-white text-sm">${item.title}</h4>
+                        <p class="text-xs text-gray-500 mt-1">${item.description}</p>
+                      </div>
+                   </div>
+                 `).join('')}
+              </div>
+            </section>
+          `;
+        }
+
+        // --- CONTACT ---
+        contentHTML += `
+           <section id="contact" class="reveal py-12">
+             <div class="glass-panel rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-orange-500"></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Let's Build Something Scalable</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
+                   I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                </p>
+                <a href="mailto:${contact.email}" class="inline-flex items-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                   <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                   Say Hello
+                </a>
+             </div>
+           </section>
+        `;
+
+        // Render to DOM
+        document.getElementById('app').innerHTML = contentHTML;
+        document.getElementById('footer-text').innerText = data.footer.enabled ? data.footer.copyright : `© ${new Date().getFullYear()} ${name}. Built with Modern Web Tech.`;
+      }
+
+      // --- Animation & UX Utils ---
+
+      function setupScrollObserver() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      }
+
+      // --- Theme Handling ---
+      const themeToggle = document.getElementById('theme-toggle');
+      const sunIcon = document.getElementById('sun-icon');
+      const moonIcon = document.getElementById('moon-icon');
+      
+      const userTheme = localStorage.getItem('theme');
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      const toggleTheme = (isDark) => {
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+          localStorage.setItem('theme', 'light');
+        }
+      };
+      
+      // Initial check
+      if (userTheme === 'dark' || (!userTheme && systemTheme)) {
+        toggleTheme(true);
+      } else {
+        toggleTheme(false);
+      }
+      
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        toggleTheme(!isDark);
+      });
+
+      // --- Mobile Menu ---
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      function toggleMobileMenu() {
+        const isOpen = !mobileMenu.classList.contains('-translate-x-full');
+        if (isOpen) {
+          mobileMenu.classList.add('-translate-x-full');
+        } else {
+          mobileMenu.classList.remove('-translate-x-full');
+        }
+      }
+      
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+      // Start App
+      document.addEventListener('DOMContentLoaded', loadPortfolio);
+
     </script>
   </body>
 </html>
