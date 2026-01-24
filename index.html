@@ -190,11 +190,7 @@
        </div>
     </main>
 
-    <footer class="border-t border-gray-200 dark:border-gray-800 py-12 mt-12 bg-white/50 dark:bg-black/20 backdrop-blur-sm">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <p id="footer-text" class="text-gray-500 text-sm"></p>
-        </div>
-    </footer>
+
 
     <script>
       // --- Helper Functions ---
@@ -240,6 +236,28 @@
         // 2. Main Sections Construction
         const { hero, about, experience, projects, education, achievements, contact, social } = data.sections;
         const { name, title, summary, profileImage, location } = data.settings;
+
+        const renderExperienceDescription = (description) => {
+          if (Array.isArray(description)) {
+            return `
+              <ul class="list-disc marker:text-orange-500 text-gray-600 dark:text-gray-400 leading-relaxed text-sm pl-5 space-y-2">
+                ${description.map(point => `<li>${point}</li>`).join('')}
+              </ul>
+            `;
+          }
+          if (typeof description === 'string') {
+            const parts = description.split(/\n|•/).map(part => part.trim()).filter(Boolean);
+            if (parts.length > 1) {
+              return `
+                <ul class="list-disc marker:text-orange-500 text-gray-600 dark:text-gray-400 leading-relaxed text-sm pl-5 space-y-2">
+                  ${parts.map(point => `<li>${point}</li>`).join('')}
+                </ul>
+              `;
+            }
+            return `<p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">${description}</p>`;
+          }
+          return '';
+        };
 
         let contentHTML = '';
 
@@ -375,9 +393,9 @@
                        <span class="text-sm font-mono text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">${job.period}</span>
                      </div>
                      <div class="text-lg text-gray-700 dark:text-gray-300 font-medium mb-3">${job.company}</div>
-                     <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm whitespace-pre-line border-l-2 border-transparent hover:border-gray-300 dark:hover:border-gray-700 pl-4 transition-colors">
-                       ${job.description}
-                     </p>
+                     <div class="border-l-2 border-transparent hover:border-gray-300 dark:hover:border-gray-700 pl-4 transition-colors">
+                       ${renderExperienceDescription(job.description)}
+                     </div>
                    </div>
                  `).join('')}
               </div>
@@ -492,7 +510,6 @@
 
         // Render to DOM
         document.getElementById('app').innerHTML = contentHTML;
-        document.getElementById('footer-text').innerText = data.footer.enabled ? data.footer.copyright : `© ${new Date().getFullYear()} ${name}.`;
       }
 
       // --- Animation & UX Utils ---

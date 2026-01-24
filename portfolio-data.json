@@ -3,7 +3,7 @@
     "name": "Vivek",
     "title": "Software Engineer",
     "location": "India",
-    "summary": "Experienced Software Engineer specializing in backend development, API optimization, and building scalable web applications with modern technologies.",
+    "summary": "Experienced backend engineer focused on fast, reliable APIs and scalable web systems.",
     "profileImage": "https://iili.io/fumhEkG.jpg"
   },
   "sections": {
@@ -59,19 +59,35 @@
           "company": "CoinDcx",
           "position": "Backend Developer",
           "period": "Apr 2025 - Present",
-          "description": "• Geolocation Accuracy Enhancement: Automated MaxMind GeoIP database updates, improving country accuracy from 95% to 99%, city accuracy from 61% to 97%, and reducing incorrect city mappings from 36% to under 3%. • Email Infrastructure Optimization: Migrated email delivery from SMTP to AWS SES with Kafka-based async acknowledgments, achieving 6x faster response time (900ms to 150ms), 70% CPU reduction, and failure rate drop from 20% to under 1%. • Unified three authentication APIs into a single endpoint and enforced geo-blocking for sensitive operations, reducing server load while strengthening fraud prevention and compliance. • Security Token Vulnerability Fix: Disabled rotation for transaction tokens being misused as long-lived auth tokens, eliminating a critical unauthorized access vulnerability. • XSS Protection Implementation: Moved session cookie creation to backend with HttpOnly flag enforcement, closing XSS attack vectors and securing token confidentiality."
+          "description": [
+            "Improved GeoIP accuracy by upgrading the MaxMind library and automating DB updates via GitHub Actions; country accuracy 95% → 99%, city accuracy 61% → 97%.",
+            "Built Bank Account Verification APIs with polling, document upload fallback, and cancellation to reduce drop-offs in failure scenarios.",
+            "Migrated sanction screening from LexisNexis to Zigram across onboarding and re-KYC flows for higher compliance reliability.",
+            "Implemented immediate session invalidation for blocked users, closing a critical security gap.",
+            "Upgraded the Auth service runtime from Node.js 14 to 20, refactoring incompatible dependencies without regressions.",
+            "Resolved memory leaks and bottlenecks in auth flows, cutting P99 latency by ~50% under peak load."
+          ]
         },
         {
           "company": "Odenkirk Pvt Ltd",
           "position": "Software Engineer",
           "period": "Dec 2024 - Mar 2025",
-          "description": "• Refined and optimized backend APIs and user workflows for an edtech platform, fixing 15+ bugs and adding new booking, editing, and cancellation features, improving engagement for 600+ users. • Enhanced frontend performance and UX by improving mentor dashboards, session tracking, and community pages, resulting in 20% higher user retention. • Created a 3D immersive environment using Babylon.js, Blender, and Mixamo animations, enabling real-time avatar movement and customization for an interactive user experience."
+          "description": [
+            "Refined backend APIs and user workflows for an edtech platform; fixed 15+ bugs and added booking, edit, and cancellation features for 600+ users.",
+            "Improved mentor dashboards, session tracking, and community pages, boosting retention by 20%.",
+            "Built a 3D immersive environment with Babylon.js, Blender, and Mixamo for real-time avatar movement and customization."
+          ]
         },
         {
           "company": "OnFocusSoft",
           "position": "Jr. Software Engineer",
           "period": "May 2024 - Nov 2024",
-          "description": "• Developed authentication flow and REST APIs for a social media app using Node.js and TypeScript, handling 100+ daily active users. • Built features like image/video posts, stories, likes, and event management for real estate agents. • Designed and engineered admin dashboard UI with React.js and TypeScript to manage 1000s of users. • Used MongoDB for scalable data storage and optimized querying for high-volume real estate content."
+          "description": [
+            "Developed auth flow and REST APIs for a social app in Node.js and TypeScript, serving 100+ daily active users.",
+            "Shipped image/video posts, stories, likes, and event management for real estate agents.",
+            "Built an admin dashboard in React + TypeScript for managing thousands of users.",
+            "Optimized MongoDB queries for high-volume content."
+          ]
         }
       ]
     },
@@ -81,7 +97,7 @@
       "items": [
         {
           "title": "DevNaukri",
-          "description": "Launched a job portal using Next.js, TypeScript, and Tailwind, featuring 60+ jobs from 50+ companies. Achieved 8500+ visitors and 35,000+ page views, connecting job seekers and employers. Utilized PostgreSQL and Prisma ORM to efficiently manage job listings and application data, ensuring robust database performance and scalability.",
+          "description": "Job portal built with Next.js, TypeScript, and Tailwind; 60+ jobs from 50+ companies, 8,500+ visitors and 35,000+ page views.",
           "tags": [
             "TypeScript",
             "Next.js",
@@ -95,7 +111,7 @@
         },
         {
           "title": "Study Notion",
-          "description": "Architected a responsive Ed-tech platform for 35+ test users to create, consume, and rate content with full authentication & authorization. Integrated Razorpay for secure payments, enhancing course enrollment and instructor earnings. Established robust RESTful communication between frontend and backend services and validated all flows using Postman.",
+          "description": "Ed-tech platform for creating and rating content with full auth; integrated Razorpay for payments and validated flows via Postman.",
           "tags": [
             "MongoDB",
             "Express.js",
@@ -104,8 +120,8 @@
             "Tailwind CSS",
             "Cloudinary"
           ],
-          "previewUrl": "https://github.com/vivek-panchal/Ed-Tech-Platform",
-          "repoUrl": "https://studynotion-by-vivek.vercel.app/"
+          "previewUrl": "https://studynotion-by-vivek.vercel.app/",
+          "repoUrl": "https://github.com/vivek-panchal/Ed-Tech-Platform"
         }
       ]
     },
@@ -119,7 +135,7 @@
           "period": "2020 - 2024"
         },
         {
-          "institution": "Govt. Boys Senior Secondary school",
+          "institution": "Govt. Boys Senior Secondary School",
           "degree": "12th - PCMB",
           "period": "2018 - 2020"
         }
@@ -130,19 +146,19 @@
       "title": "Achievements & Certifications",
       "items": [
         {
-          "title": "Project with 8500+ Unique visitors",
+          "title": "Project with 10500+ unique visitors",
           "description": ""
         },
         {
-          "title": "Solved 1000+ Problems on Leetcode and Best Rating 1714",
+          "title": "Solved 1000+ LeetCode problems; peak rating 1714",
           "description": ""
         },
         {
-          "title": "All India Rank (AIR) 359 in Leetcode Biweekly Contest 105",
+          "title": "All India Rank 359 in LeetCode Biweekly 105",
           "description": ""
         },
         {
-          "title": "105000+ Blog views on leetcode with 800+ stars",
+          "title": "125,000+ blog views on LeetCode with 1000+ stars",
           "description": ""
         }
       ]
@@ -177,39 +193,13 @@
     "navigation": {
       "enabled": true,
       "items": [
-        {
-          "name": "Home",
-          "url": "/"
-        },
-        {
-          "name": "About",
-          "url": "#about"
-        },
-        {
-          "name": "Experience",
-          "url": "#experience"
-        },
-        {
-          "name": "Projects",
-          "url": "#projects"
-        },
-        {
-          "name": "Education",
-          "url": "#education"
-        },
-        {
-          "name": "Contact",
-          "url": "#contact"
-        }
+        { "name": "Home", "url": "/" },
+        { "name": "About", "url": "#about" },
+        { "name": "Experience", "url": "#experience" },
+        { "name": "Projects", "url": "#projects" },
+        { "name": "Education", "url": "#education" },
+        { "name": "Contact", "url": "#contact" }
       ]
-    },
-    "footer": {
-      "enabled": false,
-      "copyright": "© 2025 Vivek. All rights reserved."
     }
-  },
-  "footer": {
-    "enabled": false,
-    "copyright": "cc"
   }
 }
