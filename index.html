@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vivek - Backend Engineer</title>
+    <title>Vivek Panchal - Backend Engineer</title>
     
     <!-- Favicon - Server/Database Icon for Backend Developer -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%231e293b'/><stop offset='100%25' style='stop-color:%230f172a'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='url(%23bg)'/><ellipse cx='50' cy='30' rx='28' ry='10' fill='none' stroke='%2322d3ee' stroke-width='3'/><path d='M22 30 L22 50 Q22 60 50 60 Q78 60 78 50 L78 30' fill='none' stroke='%2322d3ee' stroke-width='3'/><ellipse cx='50' cy='50' rx='28' ry='10' fill='none' stroke='%2322d3ee' stroke-width='3'/><path d='M22 50 L22 70 Q22 80 50 80 Q78 80 78 70 L78 50' fill='none' stroke='%23f97316' stroke-width='3'/><ellipse cx='50' cy='70' rx='28' ry='10' fill='none' stroke='%23f97316' stroke-width='3'/></svg>">
@@ -65,8 +65,8 @@
       /* Base Styles */
       body {
         font-family: 'Space Grotesk', sans-serif;
-        background-color: #fafafa;
-        color: #18181b;
+        background-color: #f4f4f5;
+        color: #111827;
         transition: background-color 0.3s, color 0.3s;
       }
       
@@ -83,7 +83,7 @@
         width: 100vw;
         height: 100vh;
         z-index: -1;
-        opacity: 0.05;
+        opacity: 0.03;
         pointer-events: none;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       }
@@ -117,15 +117,17 @@
 
       /* Utility Classes */
       .glass-panel {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: 0 10px 30px -20px rgba(15, 23, 42, 0.35);
       }
       
       .dark .glass-panel {
-        background: rgba(24, 24, 27, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(15, 23, 42, 0.72);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        box-shadow: 0 16px 40px -24px rgba(2, 6, 23, 0.9);
       }
 
       /* Gradient Text */
@@ -141,9 +143,62 @@
         transition: all 0.3s ease;
       }
       .card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
-        border-color: rgba(59, 130, 246, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 14px 28px -18px rgba(17, 24, 39, 0.4);
+        border-color: rgba(17, 24, 39, 0.22);
+      }
+      .section-title {
+        letter-spacing: 0.02em;
+        font-size: clamp(1.15rem, 2vw, 1.5rem);
+      }
+      .nav-link-active {
+        color: #111827 !important;
+        font-weight: 700;
+      }
+      .dark .nav-link-active {
+        color: #f4f4f5 !important;
+      }
+      .subtle-grid {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -2;
+        background-image:
+          linear-gradient(rgba(24, 24, 27, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(24, 24, 27, 0.035) 1px, transparent 1px);
+        background-size: 36px 36px;
+      }
+      .dark .subtle-grid {
+        background-image:
+          linear-gradient(rgba(244, 244, 245, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(244, 244, 245, 0.045) 1px, transparent 1px);
+      }
+      .section-shell {
+        border-radius: 1.25rem;
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        padding: 1.25rem;
+        background: rgba(255, 255, 255, 0.55);
+      }
+      .dark .section-shell {
+        border-color: rgba(228, 228, 231, 0.12);
+        background: rgba(9, 9, 11, 0.4);
+      }
+      .kicker {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: #52525b;
+        font-weight: 700;
+      }
+      .dark .kicker { color: #a1a1aa; }
+      .soft-divider {
+        height: 1px;
+        width: 100%;
+        background: linear-gradient(to right, transparent, rgba(63, 63, 70, 0.25), transparent);
+      }
+      .stat-value {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 1.1;
       }
 
       /* Terminal Code Styling */
@@ -160,31 +215,27 @@
   </head>
   <body class="antialiased selection:bg-orange-500 selection:text-white">
     
+    <div class="subtle-grid"></div>
     <div class="bg-noise"></div>
-    
-    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-20 pointer-events-none">
-      <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px] animate-blob"></div>
-      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
-    </div>
 
     <button id="theme-toggle" class="fixed top-6 right-6 z-50 p-3 rounded-full glass-panel shadow-lg hover:scale-110 transition-transform text-gray-800 dark:text-gray-200">
       <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
       <svg id="moon-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </button>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-40 hidden md:block">
-      <div id="nav-container" class="glass-panel rounded-full px-6 py-3 flex gap-8 text-sm font-medium text-gray-600 dark:text-gray-300 shadow-xl shadow-black/5">
+    <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-40 hidden md:block">
+      <div id="nav-container" class="glass-panel rounded-full px-5 py-2.5 flex gap-6 lg:gap-8 text-sm font-medium text-gray-600 dark:text-gray-300 shadow-xl shadow-black/5">
         </div>
     </nav>
 
     <button id="mobile-menu-btn" class="md:hidden fixed top-6 left-6 z-50 p-3 rounded-full glass-panel text-gray-800 dark:text-gray-200">
        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
     </button>
-    <div id="mobile-menu" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 transform -translate-x-full transition-transform duration-300 flex items-center justify-center">
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl z-40 transform -translate-x-full transition-transform duration-300 flex items-center justify-center">
         <div id="mobile-nav-links" class="flex flex-col gap-6 text-2xl font-bold text-center"></div>
     </div>
 
-    <main id="app" class="max-w-6xl mx-auto px-6 py-24 md:py-32 flex flex-col gap-28">
+    <main id="app" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 flex flex-col gap-20 md:gap-24">
        <div class="flex items-center justify-center h-[50vh]">
          <div class="animate-pulse text-xl text-gray-400 font-mono">Loading System...</div>
        </div>
@@ -214,6 +265,7 @@
           const data = await res.json();
           renderApp(data);
           setupScrollObserver();
+          setupActiveNav();
         } catch (error) {
           console.error(error);
           document.getElementById('app').innerHTML = `<div class="text-red-500 text-center">Error loading portfolio data. Please ensure portfolio-data.json is present.</div>`;
@@ -223,7 +275,7 @@
       function renderApp(data) {
         // 1. Navigation
         const navItems = data.sections.navigation.items.map(item => 
-          `<a href="${item.url}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">${item.name}</a>`
+          `<a href="${item.url}" class="nav-link hover:text-blue-600 dark:hover:text-blue-400 transition-colors">${item.name}</a>`
         ).join('');
         
         document.getElementById('nav-container').innerHTML = navItems;
@@ -235,7 +287,7 @@
 
         // 2. Main Sections Construction
         const { hero, about, experience, projects, education, achievements, contact, social } = data.sections;
-        const { name, title, summary, profileImage, location } = data.settings;
+        const { name, title, summary, location } = data.settings;
 
         const renderExperienceDescription = (description) => {
           if (Array.isArray(description)) {
@@ -259,77 +311,112 @@
           return '';
         };
 
+        const monthMap = {
+          jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5,
+          jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
+        };
+
+        const parseMonthYear = (raw) => {
+          if (!raw) return null;
+          const trimmed = raw.trim().toLowerCase();
+          if (trimmed === 'present') {
+            const now = new Date();
+            return { year: now.getFullYear(), month: now.getMonth() };
+          }
+          const parts = trimmed.split(/\s+/);
+          if (parts.length < 2) return null;
+          const month = monthMap[parts[0].slice(0, 3)];
+          const year = Number(parts[1]);
+          if (month === undefined || Number.isNaN(year)) return null;
+          return { year, month };
+        };
+
+        const monthsBetweenInclusive = (start, end) => {
+          if (!start || !end) return 0;
+          const startIndex = start.year * 12 + start.month;
+          const endIndex = end.year * 12 + end.month;
+          return Math.max(0, endIndex - startIndex + 1);
+        };
+
+        const getExperienceYears = (items) => {
+          const totalMonths = (items || []).reduce((sum, item) => {
+            const [startRaw, endRaw] = (item.period || '').split('-').map(part => part.trim());
+            const start = parseMonthYear(startRaw);
+            const end = parseMonthYear(endRaw);
+            return sum + monthsBetweenInclusive(start, end);
+          }, 0);
+          const years = totalMonths / 12;
+          return years >= 1 ? `${years.toFixed(1)}+` : '<1';
+        };
+
+        const getLeetCodeSolved = (achievementsList) => {
+          const matches = (achievementsList || [])
+            .map(item => `${item.title || ''} ${item.description || ''}`)
+            .map(text => text.match(/(\d+)\+\s*LeetCode/i))
+            .filter(Boolean);
+          return matches.length ? `${matches[0][1]}+` : '900+';
+        };
+
+        const experienceYears = getExperienceYears(experience.items);
+        const leetCodeSolved = getLeetCodeSolved(achievements.items);
+
         let contentHTML = '';
 
-        // --- HERO SECTION (Terminal Style) ---
+        // --- HERO SECTION ---
         contentHTML += `
-          <section id="home" class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center min-h-[60vh] lg:min-h-[80vh] reveal active">
-            <div class="space-y-6">
-               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/20 bg-orange-500/10 text-orange-600 dark:text-orange-400 text-xs font-mono font-medium">
+          <section id="home" class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 items-start min-h-[56vh] lg:min-h-[70vh] reveal active">
+            <div class="space-y-6 lg:col-span-2">
+               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white/60 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-xs font-mono font-medium">
                  <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-zinc-700 dark:bg-zinc-300"></span>
                   </span>
                  Available for work
                </div>
-               <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 dark:text-white">
-                 Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500">${name}</span>
+               <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+                 Building reliable backend systems<br />
+                 <span class="text-gray-700 dark:text-gray-200">for real-world scale.</span>
                </h1>
-               <h2 class="text-2xl text-gray-500 dark:text-gray-400 font-medium">${title}</h2>
-               <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
+               <h2 class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium">${name} · ${title}</h2>
+               <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
                  ${summary}
                </p>
                
-               <div class="flex flex-wrap gap-4 pt-4">
+               <div class="flex flex-wrap gap-3 sm:gap-4 pt-2">
                  ${hero.ctaButtons.map((btn, idx) => `
-                   <a href="${btn.url}" target="_blank" class="${idx === 0 ? 
+                   <a href="${btn.url}" target="_blank" rel="noopener noreferrer" class="${idx === 0 ? 
                      'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200' : 
-                     'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400'} 
-                     px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2">
+                     'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-400'} 
+                     px-5 sm:px-6 py-3 rounded-xl font-medium transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2">
                      ${btn.text}
                      ${idx === 0 ? '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>' : ''}
                    </a>
                  `).join('')}
                </div>
                
-               <div class="flex gap-4 pt-4">
+               <div class="soft-divider my-2"></div>
+               <div class="flex gap-3 pt-1">
                  ${social.items.map(s => `
-                   <a href="${s.url}" target="_blank" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
+                   <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
                      ${getIcon(s.platform)}
                    </a>
                  `).join('')}
                </div>
             </div>
 
-            <div class="order-1 lg:order-2 relative group perspective-1000 hidden lg:block">
-               <div class="mb-5 flex items-center justify-end">
-                 <img src="${profileImage}" alt="${name}" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-blue-500/30 shadow-xl" />
-               </div>
-               <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-orange-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-               <div class="relative bg-gray-900 dark:bg-gray-900 rounded-2xl border border-gray-700 shadow-2xl overflow-hidden transform transition-transform group-hover:rotate-1">
-                  <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-700 bg-gray-950">
-                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <div class="ml-2 text-xs text-gray-400 font-mono">vivek@dev ~</div>
-                  </div>
-                  <div class="p-6 font-mono text-sm overflow-hidden text-gray-100">
-                    <div class="code-line"><span class="line-num text-gray-500">1</span> <span class="text-purple-400">class</span> <span class="text-yellow-300">Developer</span> <span class="text-gray-300">{</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">2</span> &nbsp;&nbsp;<span class="text-blue-400">constructor</span><span class="text-gray-300">()</span> <span class="text-gray-300">{</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">3</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span><span class="text-gray-300">.</span>name <span class="text-gray-300">=</span> <span class="text-green-400">"${name}"</span><span class="text-gray-300">;</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">4</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span><span class="text-gray-300">.</span>role <span class="text-gray-300">=</span> <span class="text-green-400">"${title}"</span><span class="text-gray-300">;</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">5</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">this</span><span class="text-gray-300">.</span>location <span class="text-gray-300">=</span> <span class="text-green-400">"${location}"</span><span class="text-gray-300">;</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">6</span> &nbsp;&nbsp;<span class="text-gray-300">}</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">7</span> </div>
-                    <div class="code-line"><span class="line-num text-gray-500">8</span> &nbsp;&nbsp;<span class="text-blue-400">skills</span><span class="text-gray-300">()</span> <span class="text-gray-300">{</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">9</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-400">return</span> <span class="text-gray-300">[</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"Node.js"</span><span class="text-gray-300">,</span> <span class="text-green-400">"Postgres"</span><span class="text-gray-300">,</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">11</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">"AWS"</span><span class="text-gray-300">,</span> <span class="text-green-400">"Docker"</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">12</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-300">];</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">13</span>&nbsp;&nbsp;<span class="text-gray-300">}</span></div>
-                    <div class="code-line"><span class="line-num text-gray-500">14</span><span class="text-gray-300">}</span></div>
-                  </div>
-               </div>
+            <div class="lg:col-span-1 grid grid-cols-1 gap-4">
+              <div class="glass-panel rounded-2xl p-5">
+                <div class="kicker">Current Location</div>
+                <div class="text-xl font-semibold mt-2 dark:text-white">${location}</div>
+              </div>
+              <div class="glass-panel rounded-2xl p-5">
+                <div class="kicker">Core Strength</div>
+                <div class="text-xl font-semibold mt-2 text-gray-800 dark:text-gray-100">Backend Performance & Reliability</div>
+              </div>
+              <div class="glass-panel rounded-2xl p-5">
+                <div class="kicker">Open To</div>
+                <div class="text-xl font-semibold mt-2 dark:text-white">High-impact backend roles</div>
+              </div>
             </div>
           </section>
         `;
@@ -337,17 +424,17 @@
         // --- SKILLS & ABOUT (Bento Grid) ---
         if (about.enabled) {
           contentHTML += `
-            <section id="about" class="reveal">
-              <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
-                <span class="w-8 h-[2px] bg-orange-500"></span>
+            <section id="about" class="reveal section-shell">
+              <h3 class="section-title text-xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-gray-800 dark:bg-gray-200"></span>
                 Tech Stack
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-blue-500 shadow-lg shadow-blue-500/5">
+                <div class="glass-panel p-6 rounded-2xl">
                    <h4 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Technologies</h4>
                    <div class="flex flex-wrap gap-2">
                      ${about.skills.items.map(skill => `
-                       <span class="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:text-blue-500 transition-colors cursor-default">
+                      <span class="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md border border-gray-200 dark:border-gray-700 hover:border-gray-400 transition-colors cursor-default">
                          ${skill}
                        </span>
                      `).join('')}
@@ -355,11 +442,11 @@
                 </div>
                    <div class="grid grid-cols-2 gap-4">
                    <div class="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
-                      <span class="text-4xl font-bold text-blue-500 mb-1">1.8+</span>
+                      <span class="stat-value font-bold text-gray-900 dark:text-gray-100 mb-1">${experienceYears}</span>
                       <span class="text-xs text-gray-500 uppercase tracking-wider">Years Exp</span>
                    </div>
                    <div class="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
-                      <span class="text-4xl font-bold text-orange-500 mb-1">900+</span>
+                      <span class="stat-value font-bold text-gray-900 dark:text-gray-100 mb-1">${leetCodeSolved}</span>
                       <span class="text-xs text-gray-500 uppercase tracking-wider">LeetCode</span>
                    </div>
                    <div class="col-span-2 glass-panel p-6 rounded-2xl flex items-center justify-between">
@@ -369,7 +456,7 @@
                       </div>
                       <div class="text-right">
                          <div class="text-sm text-gray-500">Focus</div>
-                         <div class="font-semibold text-lg text-blue-500">Backend Systems</div>
+                         <div class="font-semibold text-lg text-gray-900 dark:text-gray-100">Backend Systems</div>
                       </div>
                    </div>
                 </div>
@@ -381,19 +468,19 @@
         // --- EXPERIENCE (Vertical Timeline) ---
         if (experience.enabled) {
           contentHTML += `
-            <section id="experience" class="reveal">
-              <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
-                <span class="w-8 h-[2px] bg-orange-500"></span>
+            <section id="experience" class="reveal section-shell">
+              <h3 class="section-title text-xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-gray-800 dark:bg-gray-200"></span>
                 Experience
               </h3>
               <div class="space-y-8 relative border-l-2 border-gray-200 dark:border-gray-800 ml-3 md:ml-6">
                  ${experience.items.map(job => `
                    <div class="relative pl-8 md:pl-12 group">
-                     <span class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-white dark:bg-gray-900 border-2 border-blue-500 group-hover:scale-125 transition-transform"></span>
+                    <span class="absolute -left-[9px] top-2 h-4 w-4 rounded-full bg-white dark:bg-gray-900 border-2 border-gray-700 dark:border-gray-200 group-hover:scale-125 transition-transform"></span>
                      
                      <div class="glass-panel rounded-2xl p-5 border border-gray-100/70 dark:border-gray-800/90">
                      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
-                       <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">${job.position}</h4>
+                       <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white transition-colors">${job.position}</h4>
                        <span class="text-sm font-mono text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">${job.period}</span>
                      </div>
                      <div class="text-lg text-gray-700 dark:text-gray-300 font-medium mb-3">${job.company}</div>
@@ -411,9 +498,9 @@
         // --- PROJECTS (Grid Cards) ---
         if (projects.enabled) {
           contentHTML += `
-            <section id="projects" class="reveal">
-              <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
-                <span class="w-8 h-[2px] bg-orange-500"></span>
+            <section id="projects" class="reveal section-shell">
+              <h3 class="section-title text-xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-gray-800 dark:bg-gray-200"></span>
                 Featured Projects
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -425,7 +512,7 @@
                       </div>
                       <div class="flex gap-3">
                         ${proj.repoUrl ? `<a href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">${getIcon('github')}</a>` : ''}
-                        ${proj.previewUrl ? `<a href="${proj.previewUrl}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-500">${getIcon('link')}</a>` : ''}
+                        ${proj.previewUrl ? `<a href="${proj.previewUrl}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">${getIcon('link')}</a>` : ''}
                       </div>
                     </div>
                     
@@ -449,14 +536,14 @@
         // --- EDUCATION ---
         if (education && education.enabled) {
           contentHTML += `
-            <section id="education" class="reveal">
-              <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
-                <span class="w-8 h-[2px] bg-orange-500"></span>
+            <section id="education" class="reveal section-shell">
+              <h3 class="section-title text-xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-gray-800 dark:bg-gray-200"></span>
                 Education
               </h3>
               <div class="space-y-4">
                 ${education.items.map(item => `
-                  <div class="glass-panel p-6 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:border-orange-500/30">
+                  <div class="glass-panel p-6 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all hover:border-gray-400/50">
                     <div>
                       <h4 class="text-lg font-bold text-gray-900 dark:text-white">${item.institution}</h4>
                       <p class="text-gray-600 dark:text-gray-400 text-sm">${item.degree}</p>
@@ -474,9 +561,9 @@
         // --- ACHIEVEMENTS ---
         if (achievements.enabled) {
           contentHTML += `
-            <section id="achievements" class="reveal">
-              <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
-                <span class="w-8 h-[2px] bg-orange-500"></span>
+            <section id="achievements" class="reveal section-shell">
+              <h3 class="section-title text-xl font-bold mb-6 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-gray-800 dark:bg-gray-200"></span>
                 Achievements
               </h3>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -500,7 +587,7 @@
         contentHTML += `
            <section id="contact" class="reveal py-12">
              <div class="glass-panel rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-orange-500"></div>
+                <div class="absolute top-0 left-0 w-full h-1 bg-gray-800 dark:bg-gray-200"></div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">Let's Build Something Scalable</h2>
                 <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
                    I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
@@ -529,6 +616,24 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      }
+
+      function setupActiveNav() {
+        const sections = [...document.querySelectorAll('main section[id]')];
+        const navLinks = [...document.querySelectorAll('.nav-link')];
+        const updateActive = () => {
+          let current = sections[0]?.id || 'home';
+          sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= 140) current = section.id;
+          });
+          navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('nav-link-active', href === `#${current}` || (current === 'home' && href === '/'));
+          });
+        };
+        window.addEventListener('scroll', updateActive, { passive: true });
+        updateActive();
       }
 
       // --- Theme Handling ---
@@ -573,8 +678,10 @@
         const isOpen = !mobileMenu.classList.contains('-translate-x-full');
         if (isOpen) {
           mobileMenu.classList.add('-translate-x-full');
+          document.body.style.overflow = '';
         } else {
           mobileMenu.classList.remove('-translate-x-full');
+          document.body.style.overflow = 'hidden';
         }
       }
       

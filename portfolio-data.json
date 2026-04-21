@@ -194,7 +194,7 @@
     "navigation": {
       "enabled": true,
       "items": [
-        { "name": "Home", "url": "/" },
+        { "name": "Home", "url": "#home" },
         { "name": "About", "url": "#about" },
         { "name": "Experience", "url": "#experience" },
         { "name": "Projects", "url": "#projects" },
