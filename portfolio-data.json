@@ -1,9 +1,9 @@
 {
   "settings": {
-    "name": "Vivek",
-    "title": "Software Engineer",
-    "location": "India",
-    "summary": "Experienced backend engineer focused on fast, reliable APIs and scalable web systems.",
+    "name": "Vivek Panchal",
+    "title": "Backend Engineer",
+    "location": "Bangalore, India",
+    "summary": "Backend Engineer at CoinDCX building high-scale, low-latency distributed systems with strong focus on reliability, compliance, and product impact.",
     "profileImage": "https://iili.io/fumhEkG.jpg"
   },
   "sections": {
@@ -16,7 +16,7 @@
         },
         {
           "text": "View Resume",
-          "url": "https://drive.google.com/file/d/1zsTEMleqPbMmI1IX0q9i-DGuhY5WAWFx/view"
+          "url": "https://drive.google.com/file/d/1cMMpwWjbTXJSQLBqFwydCn6VE0M9nZY4/view?usp=sharing"
         }
       ]
     },
@@ -30,24 +30,37 @@
           "TypeScript",
           "C++",
           "Ruby",
-          "React.js",
-          "Next.js",
-          "Express.js",
+          "SQL",
           "Node.js",
-          "MongoDB",
+          "Express.js",
           "Ruby on Rails",
-          "REST",
+          "Next.js",
+          "REST APIs",
+          "WebSockets",
+          "Microservices",
+          "PostgreSQL",
+          "MongoDB",
+          "MySQL",
+          "Redis",
           "Kafka",
+          "Event-Driven Architecture",
+          "Idempotency",
+          "Retries & Backoff",
+          "Rate Limiting",
           "AWS",
+          "CI/CD",
+          "GitHub Actions",
+          "Docker",
           "Datadog",
+          "Grafana",
+          "PagerDuty",
           "Git",
           "Vercel",
-          "Docker",
           "Postman",
-          "Github",
-          "Grafana",
-          "Pagerduty",
-          "Redis"
+          "DSA",
+          "System Design",
+          "Low-Level Design",
+          "OOP"
         ]
       }
     },
@@ -56,16 +69,16 @@
       "title": "Work Experience",
       "items": [
         {
-          "company": "CoinDcx",
-          "position": "Backend Developer",
+          "company": "CoinDCX",
+          "position": "Backend Engineer",
           "period": "Apr 2025 - Present",
           "description": [
-            "Improved GeoIP accuracy by upgrading the MaxMind library and automating DB updates via GitHub Actions; country accuracy 95% → 99%, city accuracy 61% → 97%.",
-            "Built Bank Account Verification APIs with polling, document upload fallback, and cancellation to reduce drop-offs in failure scenarios.",
-            "Migrated sanction screening from LexisNexis to Zigram across onboarding and re-KYC flows for higher compliance reliability.",
-            "Implemented immediate session invalidation for blocked users, closing a critical security gap.",
-            "Upgraded the Auth service runtime from Node.js 14 to 20, refactoring incompatible dependencies without regressions.",
-            "Resolved memory leaks and bottlenecks in auth flows, cutting P99 latency by ~50% under peak load."
+            "Cut P99 latency ~70% (41ms to 12ms) on validate_token (~6M req/hr, 1.7K RPS) by designing a Redis hash-map cache (cache-aside + TTL + invalidation), eliminating ~95% PostgreSQL SELECTs.",
+            "Built a Kafka-backed event-routing layer in the Customer Engagement Service integrating AppsFlyer S2S attribution across 4 apps with idempotent event IDs, retries, and DLQ; sustained <2ms per-event overhead.",
+            "Reduced KYC median TAT 65% (148s to 52s) for 20M+ users by architecting Reverse Penny Drop flow on Ruby on Rails, driving +5% KYC to BAV and +6% Signup to NAP conversion uplift.",
+            "Reduced daily session drops 80% (800+ to 150) across iOS, Android, and Web by root-causing auto-logout issues using Datadog distributed traces and PagerDuty triage.",
+            "Engineered a vendor-agnostic sanctions-screening adapter with active-active failover (LexisNexis to Zigram), delivering zero-downtime migration and full audit traceability.",
+            "Improved city-level GeoIP accuracy from 61% to 97% by automating MaxMind refreshes with GitHub Actions CI/CD, reducing location decisioning errors to <3%."
           ]
         },
         {
@@ -73,20 +86,17 @@
           "position": "Software Engineer",
           "period": "Dec 2024 - Mar 2025",
           "description": [
-            "Refined backend APIs and user workflows for an edtech platform; fixed 15+ bugs and added booking, edit, and cancellation features for 600+ users.",
-            "Improved mentor dashboards, session tracking, and community pages, boosting retention by 20%.",
-            "Built a 3D immersive environment with Babylon.js, Blender, and Mixamo for real-time avatar movement and customization."
+            "Lifted user retention 20% by rearchitecting mentor-dashboard data flows and community-feed pagination on Node.js and MongoDB for 600+ active users.",
+            "Shipped booking, editing, and cancellation REST APIs end-to-end and resolved 15+ production bugs across scheduling and payment workflows, reducing reported errors by ~30%."
           ]
         },
         {
           "company": "OnFocusSoft",
-          "position": "Jr. Software Engineer",
+          "position": "Software Engineer",
           "period": "May 2024 - Nov 2024",
           "description": [
-            "Developed auth flow and REST APIs for a social app in Node.js and TypeScript, serving 100+ daily active users.",
-            "Shipped image/video posts, stories, likes, and event management for real estate agents.",
-            "Built an admin dashboard in React + TypeScript for managing thousands of users.",
-            "Optimized MongoDB queries for high-volume content."
+            "Designed and shipped a JWT + RBAC authentication service on Node.js + TypeScript with secure session management and multi-role access control.",
+            "Engineered compound-indexed MongoDB schemas reducing feed-query P95 latency ~40%, and built content APIs for posts, stories, and events with optimized aggregations."
           ]
         }
       ]
@@ -96,29 +106,29 @@
       "title": "Featured Projects",
       "items": [
         {
-          "title": "DevNaukri",
-          "description": "Job portal built with Next.js, TypeScript, and Tailwind; 60+ jobs from 50+ companies, 8,500+ visitors and 35,000+ page views.",
+          "title": "LLD Playground",
+          "description": "Built 37 production-grade low-level design problems (Parking Lot, Elevator, Splitwise, Notification Service, Rate Limiter) using SOLID and GoF patterns; attracted 5,000+ developers from 30+ countries organically.",
           "tags": [
-            "TypeScript",
-            "Next.js",
-            "Postgres",
-            "Prisma",
-            "TailwindCss",
-            "Shadcn"
+            "JavaScript",
+            "OOP",
+            "Design Patterns",
+            "System Design",
+            "Concurrency"
           ],
-          "previewUrl": "https://devnaukri.vercel.app/",
-          "repoUrl": "https://github.com/vivek-panchal/devnaukri"
+          "previewUrl": "https://www.cracksystemdesign.com/lld",
+          "repoUrl": "https://github.com/vivek-panchal/Low-Level-Design-Javascript"
         },
         {
           "title": "Study Notion",
-          "description": "Ed-tech platform for creating and rating content with full auth; integrated Razorpay for payments and validated flows via Postman.",
+          "description": "Built a full-stack EdTech platform with 10,000+ unique visitors including course CRUD, instructor payouts, JWT + RBAC auth, Razorpay payment flows via idempotent webhooks, and Cloudinary media delivery.",
           "tags": [
             "MongoDB",
             "Express.js",
             "React.js",
             "Node.js",
-            "Tailwind CSS",
-            "Cloudinary"
+            "Razorpay",
+            "Cloudinary",
+            "RBAC"
           ],
           "previewUrl": "https://studynotion-by-vivek.vercel.app/",
           "repoUrl": "https://github.com/vivek-panchal/Ed-Tech-Platform"
@@ -133,11 +143,6 @@
           "institution": "Netaji Subhas University of Technology",
           "degree": "BTech - Electrical Engineering",
           "period": "2020 - 2024"
-        },
-        {
-          "institution": "Govt. Boys Senior Secondary School",
-          "degree": "12th - PCMB",
-          "period": "2018 - 2020"
         }
       ]
     },
@@ -146,20 +151,16 @@
       "title": "Achievements & Certifications",
       "items": [
         {
-          "title": "Projects with 15000+ unique visitors",
-          "description": ""
+          "title": "Solved 900+ LeetCode problems with peak rating 1714",
+          "description": "All India Rank 359 in Biweekly Contest 105."
         },
         {
-          "title": "Solved 1000+ LeetCode problems; peak rating 1714",
-          "description": ""
+          "title": "120,000+ LeetCode editorial views and 1,000+ stars",
+          "description": "Consistent technical content with strong community adoption."
         },
         {
-          "title": "All India Rank 359 in LeetCode Biweekly 105",
-          "description": ""
-        },
-        {
-          "title": "125,000+ blog views on LeetCode with 1000+ stars",
-          "description": ""
+          "title": "Built LLD Playground used by 5,000+ developers",
+          "description": "Reached 30+ countries as a practical LLD interview prep resource."
         }
       ]
     },
@@ -168,7 +169,7 @@
       "title": "Contact",
       "email": "vivek.nsut@gmail.com",
       "phone": "+91 85958XXXXX",
-      "location": "India"
+      "location": "Bangalore, India"
     },
     "social": {
       "enabled": true,
@@ -198,6 +199,7 @@
         { "name": "Experience", "url": "#experience" },
         { "name": "Projects", "url": "#projects" },
         { "name": "Education", "url": "#education" },
+        { "name": "Achievements", "url": "#achievements" },
         { "name": "Contact", "url": "#contact" }
       ]
     }
