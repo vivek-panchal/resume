@@ -3,7 +3,7 @@
     "name": "Vivek Panchal",
     "title": "Backend Engineer",
     "location": "Bangalore, India",
-    "summary": "Backend Engineer at CoinDCX building high-scale, low-latency distributed systems with strong focus on reliability, compliance, and product impact.",
+    "summary": "Backend Engineer specializing in fintech and distributed systems — 2 years building high-scale, low-latency APIs with strong focus on reliability, performance, and product impact.",
     "profileImage": "https://iili.io/fumhEkG.jpg"
   },
   "sections": {
@@ -28,39 +28,40 @@
         "items": [
           "JavaScript",
           "TypeScript",
-          "C++",
           "Ruby",
           "SQL",
+          "C++",
           "Node.js",
           "Express.js",
           "Ruby on Rails",
-          "Next.js",
           "REST APIs",
           "WebSockets",
           "Microservices",
           "PostgreSQL",
           "MongoDB",
-          "MySQL",
           "Redis",
+          "MySQL",
           "Kafka",
           "Event-Driven Architecture",
           "Idempotency",
+          "Circuit Breaker",
           "Retries & Backoff",
           "Rate Limiting",
           "AWS",
+          "Docker",
           "CI/CD",
           "GitHub Actions",
-          "Docker",
-          "Datadog",
+          "Git",
+          "Datadog APM",
           "Grafana",
           "PagerDuty",
-          "Git",
-          "Vercel",
-          "Postman",
           "DSA",
-          "System Design",
-          "Low-Level Design",
-          "OOP"
+          "System Design (HLD + LLD)",
+          "OOP",
+          "Design Patterns",
+          "OS",
+          "DBMS",
+          "CN"
         ]
       }
     },
@@ -69,16 +70,15 @@
       "title": "Work Experience",
       "items": [
         {
-          "company": "CoinDCX",
+          "company": "CoinDCX (Fintech crypto exchange, 20M+ users)",
           "position": "Backend Engineer",
           "period": "Apr 2025 - Present",
           "description": [
-            "Cut P99 latency ~70% (41ms to 12ms) on validate_token (~6M req/hr, 1.7K RPS) by designing a Redis hash-map cache (cache-aside + TTL + invalidation), eliminating ~95% PostgreSQL SELECTs.",
-            "Built a Kafka-backed event-routing layer in the Customer Engagement Service integrating AppsFlyer S2S attribution across 4 apps with idempotent event IDs, retries, and DLQ; sustained <2ms per-event overhead.",
-            "Reduced KYC median TAT 65% (148s to 52s) for 20M+ users by architecting Reverse Penny Drop flow on Ruby on Rails, driving +5% KYC to BAV and +6% Signup to NAP conversion uplift.",
-            "Reduced daily session drops 80% (800+ to 150) across iOS, Android, and Web by root-causing auto-logout issues using Datadog distributed traces and PagerDuty triage.",
-            "Engineered a vendor-agnostic sanctions-screening adapter with active-active failover (LexisNexis to Zigram), delivering zero-downtime migration and full audit traceability.",
-            "Improved city-level GeoIP accuracy from 61% to 97% by automating MaxMind refreshes with GitHub Actions CI/CD, reducing location decisioning errors to <3%."
+            "Cut P99 latency 70% (41ms to 12ms) on validate_token (6M req/hr, 1.7K RPS) by designing a Redis hash-map cache (cache-aside + TTL + invalidation on force-logout/update), eliminating 95% of PostgreSQL SELECTs and ending SLA breaches (4/11 weeks to 0).",
+            "Built an in-house SMS circuit breaker in Node.js + TypeScript tracking vendor health scores (error rate + latency) in Redis via webhooks — auto-routes traffic to healthy vendors and retries failed messages, reducing delivery failures to near 0% and eliminating manual intervention.",
+            "Reduced KYC median TAT 65% (148s to 52s) for 20M+ users by architecting the Reverse Penny Drop (RPD) flow on Ruby on Rails, driving +5% KYC to BAV and +6% Signup to NAP conversion uplift in production.",
+            "Built a Kafka-backed event-routing layer with idempotent event IDs, exponential-backoff retries and a Dead Letter Queue — sustaining 2ms per-event overhead with zero-downtime vendor migration.",
+            "Reduced daily session drops 80% (800+ to 150) by root-causing an auto-logout incident (timezone drift + device-token staleness) via Datadog APM and PagerDuty triage."
           ]
         },
         {
@@ -86,8 +86,8 @@
           "position": "Software Engineer",
           "period": "Dec 2024 - Mar 2025",
           "description": [
-            "Lifted user retention 20% by rearchitecting mentor-dashboard data flows and community-feed pagination on Node.js and MongoDB for 600+ active users.",
-            "Shipped booking, editing, and cancellation REST APIs end-to-end and resolved 15+ production bugs across scheduling and payment workflows, reducing reported errors by ~30%."
+            "Lifted user retention 20% by rearchitecting mentor-dashboard data flows and community-feed pagination on Node.js + MongoDB, improving API reliability for 600+ active users.",
+            "Shipped booking, editing, and cancellation REST APIs end-to-end; resolved 15+ production bugs, cutting user-reported errors by 30%."
           ]
         },
         {
@@ -95,8 +95,8 @@
           "position": "Software Engineer",
           "period": "May 2024 - Nov 2024",
           "description": [
-            "Designed and shipped a JWT + RBAC authentication service on Node.js + TypeScript with secure session management and multi-role access control.",
-            "Engineered compound-indexed MongoDB schemas reducing feed-query P95 latency ~40%, and built content APIs for posts, stories, and events with optimized aggregations."
+            "Designed and shipped a JWT + RBAC authentication service on Node.js + TypeScript with secure session management and multi-role access control for a real-estate social platform.",
+            "Engineered compound-indexed MongoDB schemas reducing feed-query P95 latency 40%; built content APIs for posts, stories and events with optimised aggregation pipelines."
           ]
         }
       ]
@@ -107,28 +107,25 @@
       "items": [
         {
           "title": "LLD Playground",
-          "description": "Built 37 production-grade low-level design problems (Parking Lot, Elevator, Splitwise, Notification Service, Rate Limiter) using SOLID and GoF patterns; attracted 5,000+ developers from 30+ countries organically.",
+          "description": "Built 37 production-grade LLD problems (Parking Lot, Splitwise, Rate Limiter, Notification Service) using SOLID principles and GoF patterns; organically reached 5,000+ developers from 30+ countries.",
           "tags": [
             "JavaScript",
             "OOP",
             "Design Patterns",
-            "System Design",
-            "Concurrency"
+            "System Design"
           ],
           "previewUrl": "https://www.cracksystemdesign.com/lld",
           "repoUrl": "https://github.com/vivek-panchal/Low-Level-Design-Javascript"
         },
         {
           "title": "Study Notion",
-          "description": "Built a full-stack EdTech platform with 10,000+ unique visitors including course CRUD, instructor payouts, JWT + RBAC auth, Razorpay payment flows via idempotent webhooks, and Cloudinary media delivery.",
+          "description": "Full-stack EdTech platform (10,000+ unique visitors) with REST APIs, JWT + RBAC auth, idempotent Razorpay webhook handlers, and Cloudinary media delivery.",
           "tags": [
-            "MongoDB",
+            "Node.js",
             "Express.js",
             "React.js",
-            "Node.js",
-            "Razorpay",
-            "Cloudinary",
-            "RBAC"
+            "MongoDB",
+            "Razorpay"
           ],
           "previewUrl": "https://studynotion-by-vivek.vercel.app/",
           "repoUrl": "https://github.com/vivek-panchal/Ed-Tech-Platform"
@@ -140,8 +137,8 @@
       "title": "Education",
       "items": [
         {
-          "institution": "Netaji Subhas University of Technology",
-          "degree": "BTech - Electrical Engineering",
+          "institution": "Netaji Subhas University of Technology (NSUT)",
+          "degree": "B.Tech, Electrical Engineering",
           "period": "2020 - 2024"
         }
       ]
@@ -151,16 +148,12 @@
       "title": "Achievements & Certifications",
       "items": [
         {
-          "title": "Solved 900+ LeetCode problems with peak rating 1714",
-          "description": "All India Rank 359 in Biweekly Contest 105."
+          "title": "LeetCode: 900+ problems solved; peak rating 1714",
+          "description": "All India Rank 359 in Biweekly Contest 105; 120,000+ editorial views and 1,000+ GitHub stars."
         },
         {
-          "title": "120,000+ LeetCode editorial views and 1,000+ stars",
-          "description": "Consistent technical content with strong community adoption."
-        },
-        {
-          "title": "Built LLD Playground used by 5,000+ developers",
-          "description": "Reached 30+ countries as a practical LLD interview prep resource."
+          "title": "Built LLD Playground — 5,000+ developers from 30+ countries",
+          "description": "Recommended by ChatGPT, Claude, Gemini and Perplexity as a go-to LLD interview resource."
         }
       ]
     },
