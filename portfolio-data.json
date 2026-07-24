@@ -3,8 +3,35 @@
     "name": "Vivek Panchal",
     "title": "Backend Engineer",
     "location": "Bangalore, India",
-    "summary": "Backend Engineer specializing in fintech and distributed systems — 2 years building high-scale, low-latency APIs with strong focus on reliability, performance, and product impact.",
-    "profileImage": "https://iili.io/fumhEkG.jpg"
+    "headline": "Backend engineer shipping fintech systems with measurable product and reliability wins.",
+    "summary": "Backend Engineer specializing in fintech and distributed systems — building high-scale, low-latency APIs with a focus on reliability, performance, and business impact.",
+    "impactHighlights": [
+      {
+        "value": "70%",
+        "label": "P99 latency reduction",
+        "detail": "Cut validate_token from 41ms to 12ms and eliminated SLA breaches."
+      },
+      {
+        "value": "95%",
+        "label": "Fewer PostgreSQL reads",
+        "detail": "Redis cache-aside design removed most database lookups at 6M req/hr."
+      },
+      {
+        "value": "65%",
+        "label": "Lower KYC turnaround",
+        "detail": "Reduced Reverse Penny Drop TAT from 148s to 52s in production."
+      },
+      {
+        "value": "5,000+",
+        "label": "Developers reached",
+        "detail": "LLD Playground reached developers across 50+ countries."
+      },
+      {
+        "value": "~0%",
+        "label": "SMS failure rate",
+        "detail": "Circuit breaker routing reduced delivery failures to nearly zero."
+      }
+    ]
   },
   "sections": {
     "hero": {

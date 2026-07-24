@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vivek Panchal - Backend Engineer</title>
+    <title>Vivek Panchal | Backend Engineer | Fintech Systems</title>
+    <meta name="description" content="Vivek Panchal is a backend engineer building high-throughput fintech systems with measurable impact on latency, reliability, and product conversion." />
     
     <!-- Favicon - Server/Database Icon for Backend Developer -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%231e293b'/><stop offset='100%25' style='stop-color:%230f172a'/></linearGradient></defs><rect width='100' height='100' rx='16' fill='url(%23bg)'/><ellipse cx='50' cy='30' rx='28' ry='10' fill='none' stroke='%2322d3ee' stroke-width='3'/><path d='M22 30 L22 50 Q22 60 50 60 Q78 60 78 50 L78 30' fill='none' stroke='%2322d3ee' stroke-width='3'/><ellipse cx='50' cy='50' rx='28' ry='10' fill='none' stroke='%2322d3ee' stroke-width='3'/><path d='M22 50 L22 70 Q22 80 50 80 Q78 80 78 70 L78 50' fill='none' stroke='%23f97316' stroke-width='3'/><ellipse cx='50' cy='70' rx='28' ry='10' fill='none' stroke='%23f97316' stroke-width='3'/></svg>">
@@ -68,6 +69,7 @@
         background-color: #f4f4f5;
         color: #111827;
         transition: background-color 0.3s, color 0.3s;
+        overflow-x: hidden;
       }
       
       .dark body {
@@ -122,6 +124,7 @@
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(15, 23, 42, 0.08);
         box-shadow: 0 10px 30px -20px rgba(15, 23, 42, 0.35);
+        min-width: 0;
       }
       
       .dark .glass-panel {
@@ -173,11 +176,41 @@
           linear-gradient(rgba(244, 244, 245, 0.045) 1px, transparent 1px),
           linear-gradient(90deg, rgba(244, 244, 245, 0.045) 1px, transparent 1px);
       }
+      .ambient-orb {
+        position: fixed;
+        border-radius: 9999px;
+        filter: blur(88px);
+        opacity: 0.35;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .ambient-orb-one {
+        top: -6rem;
+        left: -5rem;
+        width: 18rem;
+        height: 18rem;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0) 70%);
+      }
+      .ambient-orb-two {
+        right: -6rem;
+        bottom: -7rem;
+        width: 20rem;
+        height: 20rem;
+        background: radial-gradient(circle, rgba(249, 115, 22, 0.24) 0%, rgba(249, 115, 22, 0) 72%);
+      }
+      .dark .ambient-orb-one {
+        opacity: 0.28;
+      }
+      .dark .ambient-orb-two {
+        opacity: 0.22;
+      }
       .section-shell {
         border-radius: 1.25rem;
         border: 1px solid rgba(17, 24, 39, 0.08);
         padding: 1.25rem;
         background: rgba(255, 255, 255, 0.55);
+        width: 100%;
+        min-width: 0;
       }
       .dark .section-shell {
         border-color: rgba(228, 228, 231, 0.12);
@@ -200,6 +233,12 @@
         font-size: clamp(1.5rem, 3vw, 2rem);
         line-height: 1.1;
       }
+      .metric-value {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        overflow-wrap: anywhere;
+      }
 
       /* Terminal Code Styling */
       .code-line {
@@ -217,6 +256,8 @@
     
     <div class="subtle-grid"></div>
     <div class="bg-noise"></div>
+    <div class="ambient-orb ambient-orb-one"></div>
+    <div class="ambient-orb ambient-orb-two"></div>
 
     <button id="theme-toggle" class="fixed top-6 right-6 z-50 p-3 rounded-full glass-panel shadow-lg hover:scale-110 transition-transform text-gray-800 dark:text-gray-200">
       <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -287,7 +328,7 @@
 
         // 2. Main Sections Construction
         const { hero, about, experience, projects, education, achievements, contact, social } = data.sections;
-        const { name, title, summary, location } = data.settings;
+        const { name, title, summary, location, headline, impactHighlights = [] } = data.settings;
 
         const renderExperienceDescription = (description) => {
           if (Array.isArray(description)) {
@@ -373,9 +414,8 @@
                   </span>
                  Available for work
                </div>
-               <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
-                 Building reliable backend systems<br />
-                 <span class="text-gray-700 dark:text-gray-200">for real-world scale.</span>
+                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+                   ${headline || 'Building backend systems that move product metrics.'}
                </h1>
                <h2 class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium">${name} · ${title}</h2>
                <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
@@ -418,6 +458,18 @@
                 <div class="text-xl font-semibold mt-2 dark:text-white">High-impact backend roles</div>
               </div>
             </div>
+
+            <div class="lg:col-span-3 w-full">
+              <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3 w-full max-w-none mt-2">
+                ${impactHighlights.map(item => `
+                  <div class="glass-panel rounded-2xl p-4 border border-white/40 dark:border-white/10">
+                    <div class="metric-value font-bold text-gray-900 dark:text-white">${item.value}</div>
+                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-1">${item.label}</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">${item.detail}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
           </section>
         `;
 
@@ -427,11 +479,11 @@
             <section id="about" class="reveal section-shell">
               <h3 class="section-title text-xl font-bold mb-8 flex items-center gap-3">
                 <span class="w-8 h-[2px] bg-gray-800 dark:bg-gray-200"></span>
-                Tech Stack
+                Impact Stack
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="glass-panel p-6 rounded-2xl">
-                   <h4 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Technologies</h4>
+                   <h4 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Core Capabilities</h4>
                    <div class="flex flex-wrap gap-2">
                      ${about.skills.items.map(skill => `
                       <span class="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md border border-gray-200 dark:border-gray-700 hover:border-gray-400 transition-colors cursor-default">
